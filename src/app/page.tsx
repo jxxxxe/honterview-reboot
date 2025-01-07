@@ -1,4 +1,5 @@
 import '@/containers/main/style.css';
+
 import MainIntroSection from '../containers/main/components/introSection';
 import MainOutroSection from '../containers/main/components/outroSection';
 import MainQuestionListSection from '../containers/main/components/questionsSection/questionListSection';

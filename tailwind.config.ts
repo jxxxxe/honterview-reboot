@@ -36,6 +36,15 @@ export default {
         xl: '1280px',
         '2xl': '1536px',
       },
+      fontSize: {
+        extraSmall: '1.2rem',
+        small: '1.4rem',
+        medium: '1.6rem',
+        large: '1.8rem',
+        extraLarge: '2rem',
+        doubleLarge: '3rem',
+        tripleLarge: '3.6rem',
+      },
       fontFamily: {
         GoldenPlains: ['GoldenPlains'],
       },

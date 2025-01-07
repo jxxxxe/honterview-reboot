@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { HTMLAttributes } from 'react';
 
-import { IProps } from './types';
+export interface IProps extends HTMLAttributes<HTMLImageElement> {
+  width: number;
+  height: number;
+}
 
 const Logo = ({ width, height, ...rest }: IProps) => {
   return (

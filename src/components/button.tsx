@@ -1,11 +1,17 @@
-'use client';
-
-import React from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ButtonType, IProps } from './types';
-
-export { ButtonType } from './types';
+export enum ButtonType {
+  Type1 = 'primary',
+  Type2 = 'primaryAlternate',
+  Type3 = 'secondary',
+  Type4 = 'secondaryAlternate',
+}
+export interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  styleType?: ButtonType;
+  className?: string;
+}
 
 /**
  * @brief Button 컴포넌트

@@ -1,6 +1,7 @@
 import './style.css';
 
 import MainSectionAnimationWrapper from '../animationWrapper/MainSectionAnimationWrapper';
+import { ChevronDoubleDownIcon } from '@heroicons/react/24/outline';
 
 const MainIntroSection = () => {
   return (
@@ -17,10 +18,10 @@ const MainIntroSection = () => {
         <h2 className="flex w-full justify-center font-bold">
           개발 면접의 모든 것
         </h2>
-        <p className={`font-GoldenPlains text-[8rem] xl:text-[9rem]`}>
+        <p className="font-GoldenPlains text-[8rem] xl:text-[9rem]">
           Honterview
         </p>
-        {/* <ArrowDownSecondaryIcon className="arrow_down absolute bottom-[2rem] h-[5rem]" /> */}
+        <ChevronDoubleDownIcon className="arrow_down absolute bottom-[2rem] size-14" />
       </MainSectionAnimationWrapper>
     </div>
   );

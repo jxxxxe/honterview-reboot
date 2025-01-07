@@ -4,10 +4,10 @@
 
 @font-face {
   font-family: 'GoldenPlains';
-  src: 'fonts/GoldenPlains.ttf';
+  src: url('../styles/fonts/GoldenPlains.ttf');
 }
 
-tml {
+html {
   font-size: 62.5%;
 }
 
