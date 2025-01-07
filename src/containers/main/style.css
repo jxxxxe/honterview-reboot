@@ -1,0 +1,21 @@
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none; /* IE and 엣지 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+.main-section-intro {
+  scroll-snap-align: start;
+  scroll-margin: 7rem 0 0 0;
+}
+
+.main-section {
+  scroll-snap-align: start;
+}

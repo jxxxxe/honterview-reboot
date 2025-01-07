@@ -1,0 +1,14 @@
+.arrow_down {
+  animation: arrowdown 2s infinite linear;
+  animation-delay: 3s;
+}
+
+@keyframes arrowdown {
+  0%,
+  100% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-30%);
+  }
+}

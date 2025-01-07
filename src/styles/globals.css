@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'GoldenPlains';
+  src: 'fonts/GoldenPlains.ttf';
+}
+
+tml {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+}
+
+.wrap {
+  min-height: calc(100vh - 7rem);
+}
+
+.fit-wrap {
+  height: calc(100vh - 7rem);
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a5a49e;
+  border-radius: 5px;
+}

@@ -1,0 +1,7 @@
+.outro_link {
+  transition: all 0.1s linear;
+}
+
+.outro_link:hover {
+  transform: scale(1.1);
+}

@@ -1,0 +1,29 @@
+.chat_bubble1 {
+  animation: cloudemove 2s infinite linear;
+}
+
+.chat_bubble2 {
+  animation: cloudemove 4s infinite linear;
+}
+
+.chat_bubble3 {
+  animation: cloudemove 3s infinite linear;
+}
+
+.chat_bubble4 {
+  animation: cloudemove 3.5s infinite linear;
+}
+
+.chat_bubble5 {
+  animation: cloudemove 2.5s infinite linear;
+}
+
+@keyframes cloudemove {
+  0%,
+  100% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+}
