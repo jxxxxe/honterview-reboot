@@ -1,6 +1,9 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
-import { ScreenShotsScreensProps } from './type';
+interface ScreenShotsScreensProps extends React.PropsWithChildren {
+  imageSrc: StaticImageData;
+  imageTitle: string;
+}
 
 const ScreenShotsScreens = ({
   imageSrc,

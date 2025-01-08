@@ -1,6 +1,12 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
-import { MainQuestionsSectionProps } from './type';
+interface MainQuestionsSectionProps extends React.PropsWithChildren {
+  imageSrc: StaticImageData;
+  title1: string;
+  title2: string;
+  title1Detail?: string;
+  imageTitle: string;
+}
 
 const MainQuestionsSection = ({
   children: chatBubbleChildren,

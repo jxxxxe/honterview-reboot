@@ -6,7 +6,7 @@ import MainQuestionListSection from '../containers/main/components/questionsSect
 import MainQuestionDetailSection from '../containers/main/components/questionsSection/questionsDetailSection';
 import MainScreenShotsSection from '../containers/main/components/screenShotsSection';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="h-full text-gray-800">
       <MainIntroSection />
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -12,7 +12,7 @@ const Logo = ({ width, height, ...rest }: IProps) => {
     <Link href="/">
       <Image
         quality={100}
-        src="/images/logo-removebg.png"
+        src="/logo-removebg.png"
         alt="혼터뷰 로고"
         width={width}
         height={height}

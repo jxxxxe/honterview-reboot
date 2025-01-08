@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { v4 as v4uuid } from 'uuid';
 
-import { navigationItems } from '../../navigation/constants/navigationItems';
+import { navigationItems } from '../../navigation/constants/navigation-items';
 
 const MobileNavigation = () => {
   const pathname = usePathname();

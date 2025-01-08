@@ -7,7 +7,7 @@ import { PropsWithChildren, useState } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const HamburgerMenu = ({ children }: PropsWithChildren) => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
 
   const handleToggleActive = () => {
     setActive((prev) => !prev);
