@@ -6,7 +6,7 @@ import MainQuestionListSection from '../containers/main/components/questionsSect
 import MainQuestionDetailSection from '../containers/main/components/questionsSection/questionsDetailSection';
 import MainScreenShotsSection from '../containers/main/components/screenShotsSection';
 
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <div className="h-full text-gray-800">
       <MainIntroSection />

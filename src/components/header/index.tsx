@@ -13,7 +13,7 @@ const Header = async () => {
   return (
     <header className="flex h-28 min-w-[32rem] flex-wrap items-center justify-between px-8 text-large md:justify-around">
       <Title />
-      <Navigation isAdmin={true} />
+      <Navigation />
       <LinkButtons />
       <HamburgerMenu>
         <div className="absolute right-0 top-[7rem] z-10 flex flex-col border bg-white text-medium font-medium md:hidden">

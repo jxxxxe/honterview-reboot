@@ -6,11 +6,7 @@ import { v4 as v4uuid } from 'uuid';
 
 import { navigationItems } from './constants/navigation-items';
 
-export interface IProps {
-  isAdmin: boolean;
-}
-
-const Navigation = ({ isAdmin }: IProps) => {
+const Navigation = () => {
   const pathname = usePathname();
 
   return (
@@ -31,16 +27,6 @@ const Navigation = ({ isAdmin }: IProps) => {
             </Link>
           );
         })}
-        {isAdmin && (
-          <Link
-            href="/admin"
-            replace={false}
-            scroll={false}
-            className={`${pathname === '/admin' ? 'text-primaries-primary' : ''}`}
-          >
-            관리자
-          </Link>
-        )}
       </ul>
     </nav>
   );

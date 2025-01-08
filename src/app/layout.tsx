@@ -17,10 +17,10 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
       lang="ko"
       className={font.className}
     >
-      <body>
+      <body className="h-screen">
         <ToastContainer />
         <Header />
-        <main>{children}</main>
+        <main className="wrap">{children}</main>
       </body>
     </html>
   );

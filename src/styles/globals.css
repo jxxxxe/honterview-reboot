@@ -11,10 +11,6 @@ html {
   font-size: 62.5%;
 }
 
-body {
-  height: 100vh;
-}
-
 .wrap {
   min-height: calc(100vh - 7rem);
 }

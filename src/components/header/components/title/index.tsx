@@ -6,11 +6,11 @@ const Title = () => {
   return (
     <div className="flex items-center gap-4">
       <Logo
-        width={50}
-        height={50}
+        width={40}
+        height={40}
       />
       <Link href="/">
-        <h1 className="text-doubleLarge font-bold">Honterview</h1>
+        <h1 className="text-[3rem] font-bold">혼터뷰</h1>
       </Link>
     </div>
   );

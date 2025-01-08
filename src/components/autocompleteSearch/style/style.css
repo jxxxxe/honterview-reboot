@@ -1,0 +1,11 @@
+.autoInput::-webkit-scrollbar,
+.autobox::-webkit-scrollbar,
+.auto-tag::-webkit-scrollbar {
+  display: none;
+}
+
+.autoInput,
+.autobox {
+  -ms-overflow-style: none; /* IE and 엣지 */
+  scrollbar-width: none; /* 파이어폭스 */
+}

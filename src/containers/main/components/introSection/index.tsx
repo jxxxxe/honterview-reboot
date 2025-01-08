@@ -1,11 +1,9 @@
-import './style.css';
-
 import MainSectionAnimationWrapper from '../animationWrapper/MainSectionAnimationWrapper';
 import { ChevronDoubleDownIcon } from '@heroicons/react/24/outline';
 
 const MainIntroSection = () => {
   return (
-    <div className="wrap bg-gradient bg-gradient-to-b from-white to-blue-100">
+    <div className="bg-gradient bg-gradient-to-b from-white to-blue-100">
       <MainSectionAnimationWrapper className="main-section-intro wrap flex flex-col items-center justify-center p-[2rem] text-[4.4rem] tablet:text-[6rem]">
         <h2 className="flex flex-col justify-center font-bold xl:flex-row xl:gap-[1rem]">
           <p>
@@ -21,7 +19,7 @@ const MainIntroSection = () => {
         <p className="font-GoldenPlains text-[8rem] xl:text-[9rem]">
           Honterview
         </p>
-        <ChevronDoubleDownIcon className="arrow_down absolute bottom-[2rem] size-14" />
+        <ChevronDoubleDownIcon className="absolute bottom-[2rem] size-14 animate-bounce" />
       </MainSectionAnimationWrapper>
     </div>
   );

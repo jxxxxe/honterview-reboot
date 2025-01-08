@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import MobileLogoutButton from './mobile-logout-button';
 
+// TODO: 로그인 여부에 삼항연산자 필요
 const MobileLinkButtons = async () => {
   return (
     <ul className="flex flex-col items-center">
@@ -12,7 +13,7 @@ const MobileLinkButtons = async () => {
         >
           마이페이지
         </Link>
-        <MobileLogoutButton />
+        {/* <MobileLogoutButton /> */}
       </>
       <Link
         href="/auth/login"

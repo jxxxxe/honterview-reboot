@@ -1,5 +1,3 @@
-import '../style.css';
-
 import QuestionListImage from '@/containers/main/images/questionListImage.png';
 
 import MainSectionAnimationWrapper from '../../animationWrapper/MainSectionAnimationWrapper';

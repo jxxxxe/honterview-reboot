@@ -2,12 +2,10 @@
 
 import { PropsWithChildren, useState } from 'react';
 
-// import { HamburgerIcon } from '@/components/icon';
-
 import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const HamburgerMenu = ({ children }: PropsWithChildren) => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   const handleToggleActive = () => {
     setActive((prev) => !prev);
@@ -21,7 +19,7 @@ const HamburgerMenu = ({ children }: PropsWithChildren) => {
           onClick={handleToggleActive}
           className="flex items-center justify-center"
         >
-          <Bars3Icon />
+          <Bars3Icon className="size-10" />
         </button>
       </div>
       {active && children}
