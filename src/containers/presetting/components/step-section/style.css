@@ -1,0 +1,5 @@
+.tooltip-mark:hover .tooltip-box,
+.tooltip-mark:focus .tooltip-box {
+  visibility: visible;
+  opacity: 1;
+}

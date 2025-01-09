@@ -1,0 +1,23 @@
+.start-button {
+  animation: ready-to-start 0.7s linear;
+  animation-delay: 0.1s;
+}
+
+@keyframes ready-to-start {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.1) rotate(20deg);
+  }
+  30% {
+    transform: scale(1.1) rotate(-20deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(10deg);
+  }
+  70% {
+    transform: scale(1.1) rotate(-10deg);
+  }
+}
