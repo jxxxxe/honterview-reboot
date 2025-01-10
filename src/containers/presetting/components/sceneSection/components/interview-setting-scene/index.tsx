@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import usePresettingDataStore from '@/container/presetting/stores/usePresettingDataStore';
-import useStepStore from '@/container/presetting/stores/useStepStore';
-
 import CountSection from './components/count-section';
 import InterviewTypeSection from './components/interview-type-section';
-import TimerSection from './components/timerSection';
+import TimerSection from './components/timer-section';
+import useStepStore from '@/stores/presetting/useStepStore';
+import usePresettingDataStore from '@/stores/presetting/usePresettingDataStore';
 
 const InterviewSettingScene = () => {
   const { setNextButtonOn, setNextButtonOff } = useStepStore();

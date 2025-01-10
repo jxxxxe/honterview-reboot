@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 
 import AutocompleteSearch from '@/components/autocompleteSearch';
 import { AutocompleteDataType } from '@/components/autocompleteSearch/type';
-import { XIcon } from '@/components/icon';
-import Loading from '@/components/loading';
+
 import Tag from '@/components/tag';
 import { notify } from '@/components/toast';
-import usePresettingDataStore from '@/container/presetting/stores/usePresettingDataStore';
-import { getQuestionListByCategories } from '@/services/presetting';
 
 import SectionAnimationWrapper from '../../section-animation-wrapper';
+import usePresettingDataStore from '@/stores/presetting/usePresettingDataStore';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { dummyQuestionsList } from '@/app/questions/dummydata';
 
 export interface QuestionAPIType {
   id: number;
@@ -25,16 +25,21 @@ const QuestionSection = () => {
   useEffect(() => {
     setIsLoading(true);
     const categories = firstQuestionTags.map(({ name }) => name).join(',');
-
-    getQuestionListByCategories(categories)
-      .then(({ data }) => {
-        const questions = data.map((item: QuestionAPIType) => ({
-          id: item.id,
-          name: item.content,
-        }));
-        setQuestionList(questions);
-      })
-      .catch((e) => notify('error', e.message));
+    setQuestionList(
+      dummyQuestionsList.data.data.map((item) => ({
+        id: item.id,
+        name: item.content,
+      })),
+    );
+    // getQuestionListByCategories(categories)
+    //   .then(({ data }) => {
+    //     const questions = data.map((item: QuestionAPIType) => ({
+    //       id: item.id,
+    //       name: item.content,
+    //     }));
+    //     setQuestionList(questions);
+    //   })
+    //   .catch((e) => notify('error', e.message));
     setIsLoading(false);
   }, [firstQuestionTags, firstQuestionTags.length]);
 
@@ -43,7 +48,7 @@ const QuestionSection = () => {
       <h2 className="text-large font-semibold">질문 선택</h2>
       <div className="h-[4rem] w-full">
         {isLoading ? (
-          <Loading />
+          <></>
         ) : (
           <AutocompleteSearch
             totalDatas={questionList}
@@ -67,7 +72,7 @@ const QuestionSection = () => {
               setFirstQuestion(undefined);
             }}
           >
-            <XIcon className="h-[1.5rem] stroke-primaries-primary" />
+            <XMarkIcon className="h-[1.5rem] stroke-primaries-primary" />
           </button>
         </Tag>
       )}

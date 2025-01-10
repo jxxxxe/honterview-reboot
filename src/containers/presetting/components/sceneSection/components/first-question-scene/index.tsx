@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 
-import usePresettingDataStore from '@/container/presetting/stores/usePresettingDataStore';
-import useStepStore from '@/container/presetting/stores/useStepStore';
-
 import QuestionSection from './components/question-section';
 import TagSection from './components/tag-section';
+import useStepStore from '@/stores/presetting/useStepStore';
+import usePresettingDataStore from '@/stores/presetting/usePresettingDataStore';
 
 const FirstQuestionScene = () => {
   const { setNextButtonOn, setNextButtonOff } = useStepStore();

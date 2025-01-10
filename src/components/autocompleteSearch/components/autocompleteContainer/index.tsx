@@ -1,11 +1,11 @@
 import { useAutocomplete } from '../../contexts';
 
 const AutocompleteContainer = ({ children }: React.PropsWithChildren) => {
-  const { autocompleteRef } = useAutocomplete();
+  // const { autocompleteRef } = useAutocomplete();
 
   return (
     <div
-      ref={autocompleteRef}
+      // ref={autocompleteRef}
       className="flex h-full w-full flex-col"
     >
       {children}

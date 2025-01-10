@@ -1,8 +1,8 @@
-import { SearchIcon } from '@/components/icon';
 import Input from '@/components/input';
 
 import { AutocompleteInputProps } from './type';
 import useAutocompleteInput from './useAutocompleteInput';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 const KEY_LIST = ['ArrowDown', 'ArrowUp', 'Enter'];
 
@@ -42,7 +42,7 @@ const AutocompleteInput = ({
           placeholder={placeholder ?? '검색어를 입력하세요'}
         />
       </div>
-      {!isListVisible && <SearchIcon />}
+      {!isListVisible && <MagnifyingGlassIcon />}
     </Input>
   );
 };

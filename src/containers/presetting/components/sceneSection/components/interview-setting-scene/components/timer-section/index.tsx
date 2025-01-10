@@ -1,16 +1,10 @@
 import { useState } from 'react';
 
-import usePresettingDataStore from '@/container/presetting/stores/usePresettingDataStore';
-
 import SectionAnimationWrapper from '../../../section-animation-wrapper';
 import TimePicker from './components/time-picker';
-
-export interface TimerSectionProps {
-  isVisible: boolean;
-}
-
-export const minuteData = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-export const secondData = [0, 10, 20, 30, 40, 50];
+import { TimerSectionProps } from '../../../../types';
+import usePresettingDataStore from '@/stores/presetting/usePresettingDataStore';
+import { minuteData, secondData } from '../../../../constants';
 
 const TimerSection = ({ isVisible }: TimerSectionProps) => {
   const { setTimeMinute, setTimeSecond, answerTime } = usePresettingDataStore();

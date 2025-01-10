@@ -3,14 +3,12 @@
 import { useEffect, useState } from 'react';
 
 import NotFound from '@/app/not-found';
-import DividerHorizontal from '@/components/dividerHorizontal';
-import Loading from '@/components/loading';
+import DividerHorizontal from '@/components/divider-horizontal';
 import { notify } from '@/components/toast';
-import { getQuestionInfo } from '@/services/presetting';
 
 import PreSettingButtonSection from './components/buttonSection';
 import PreSettingSceneSection from './components/sceneSection';
-import StepSection from './components/stepSection';
+import StepSection from './components/step-section';
 import usePresettingDataStore from '../../stores/presetting/usePresettingDataStore';
 import useStepStore from '../../stores/presetting/useStepStore';
 import { PreSettingProps } from './type';
@@ -30,13 +28,6 @@ const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
   useEffect(() => {
     setIsLoading(true);
     if (firstQuestionId) {
-      getQuestionInfo(firstQuestionId)
-        .then((res) => {
-          if (!res) {
-            setIsQuestionError(true);
-          }
-        })
-        .catch((e) => notify('error', e.message));
       setSettingStep();
       setFirstQuestion({
         name: '',
@@ -46,9 +37,9 @@ const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
     setIsLoading(false);
   }, [firstQuestionId, setFirstQuestion, setSettingStep]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   if (isQuestionError) {
     return <NotFound />;

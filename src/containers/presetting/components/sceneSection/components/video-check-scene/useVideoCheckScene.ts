@@ -1,43 +1,42 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
-import { useCamera } from '@/components/camera';
-import useStepStore from '@/container/presetting/stores/useStepStore';
+import useStepStore from '@/stores/presetting/useStepStore';
 
 const useVideoCheckScene = () => {
-  const {
-    status,
-    isLoading,
-    isRecording,
-    startRecording,
-    previewStream,
-    error,
-    pauseRecording,
-    stopRecording,
-  } = useCamera();
+  // const {
+  //   status,
+  //   isLoading,
+  //   isRecording,
+  //   startRecording,
+  //   previewStream,
+  //   error,
+  //   pauseRecording,
+  //   stopRecording,
+  // } = useCamera();
 
   const { setNextButtonOn, setNextButtonOff, currentStep } = useStepStore();
 
-  useEffect(() => {
-    if (currentStep !== 4) {
-      stopRecording();
-      return;
-    }
-    startRecording();
-    pauseRecording();
+  // useEffect(() => {
+  //   if (currentStep !== 4) {
+  //     stopRecording();
+  //     return;
+  //   }
+  //   startRecording();
+  //   pauseRecording();
 
-    if (isRecording || status === 'paused') {
-      setNextButtonOn();
-    } else {
-      setNextButtonOff();
-    }
-  }, [isRecording, currentStep]);
+  //   if (isRecording || status === 'paused') {
+  //     setNextButtonOn();
+  //   } else {
+  //     setNextButtonOff();
+  //   }
+  // }, [isRecording, currentStep]);
 
   return {
-    previewStream,
-    isLoading,
-    status,
-    error,
+    // previewStream,
+    // isLoading,
+    // status,
+    // error,
     currentStep,
   };
 };

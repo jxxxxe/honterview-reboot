@@ -7,10 +7,7 @@ import Button, { ButtonType } from '@/components/button';
 import usePresettingDataStore from '../../../../stores/presetting/usePresettingDataStore';
 import useStepStore from '../../../../stores/presetting/useStepStore';
 import usePresetting from '../../usePresetting';
-
-export interface PreSettingButtonSectionProps {
-  fromQuestionPage?: boolean;
-}
+import { PreSettingButtonSectionProps } from '../sceneSection/types';
 
 const PreSettingButtonSection = ({
   fromQuestionPage,

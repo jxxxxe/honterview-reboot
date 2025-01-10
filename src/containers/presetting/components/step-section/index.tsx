@@ -7,7 +7,7 @@ import usePresettingDataStore from '../../../../stores/presetting/usePresettingD
 import useStepStore from '../../../../stores/presetting/useStepStore';
 import StepBar from './components/step-bar';
 import StepCircle from './components/step-circle';
-import { TITLE_LIST } from './constants/stepTitle';
+import { TITLE_LIST } from './constants';
 import { StepNumber } from './type';
 
 const StepSection = () => {

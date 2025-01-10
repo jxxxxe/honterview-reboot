@@ -7,13 +7,13 @@ import React, {
   useState,
 } from 'react';
 
-import useClickAway from '@/hooks/useClickAway';
+// import useClickAway from '@/hooks/useClickAway';
 
 import { AutocompleteDataType } from '../type';
 import { AutocompleteContextProps, AutocompleteProviderProps } from './type';
 
 const AutocompleteContext = createContext<AutocompleteContextProps>({
-  autocompleteRef: null,
+  // autocompleteRef: null,
   autoItemRef: null,
   autoBoxRef: null,
   isListVisible: false,
@@ -42,10 +42,10 @@ const AutocompleteProvider = ({
     AutocompleteDataType[]
   >([]);
 
-  const autocompleteRef = useClickAway(() => {
-    setIsListVisible(false);
-    setIsCreateVisible(false);
-  }) as RefObject<HTMLDivElement>;
+  // const autocompleteRef = useClickAway(() => {
+  //   setIsListVisible(false);
+  //   setIsCreateVisible(false);
+  // }) as RefObject<HTMLDivElement>;
 
   const autoItemRef = useRef(null);
   const autoBoxRef = useRef(null);
@@ -57,7 +57,7 @@ const AutocompleteProvider = ({
       onSelectItem(item);
     };
     return {
-      autocompleteRef,
+      // autocompleteRef,
       autoItemRef,
       autoBoxRef,
       isListVisible,
@@ -74,7 +74,7 @@ const AutocompleteProvider = ({
     };
   }, [
     autocompleteList,
-    autocompleteRef,
+    // autocompleteRef,
     inputValue,
     isListVisible,
     keyboardIndex,

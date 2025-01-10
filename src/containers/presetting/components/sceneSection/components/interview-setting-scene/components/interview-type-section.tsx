@@ -1,8 +1,9 @@
 import Button, { ButtonType } from '@/components/button';
-import usePresettingDataStore from '@/container/presetting/stores/usePresettingDataStore';
-import useStepStore from '@/container/presetting/stores/useStepStore';
 
 import SectionAnimationWrapper from '../../section-animation-wrapper';
+import useStepStore from '@/stores/presetting/useStepStore';
+import usePresettingDataStore from '@/stores/presetting/usePresettingDataStore';
+import { InterviewTypeSectionProps } from '../../../types';
 
 const InterviewTypeSection = ({
   setNextItemOn,

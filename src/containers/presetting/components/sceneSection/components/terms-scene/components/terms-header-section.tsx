@@ -1,4 +1,4 @@
-import { TERMS_DESCRIPTION, TERMS_HEADER } from '..';
+import { TERMS_DESCRIPTION, TERMS_HEADER } from '../constants';
 
 const TermsHeaderSection = () => {
   return (

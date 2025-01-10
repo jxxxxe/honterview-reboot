@@ -1,9 +1,9 @@
 import { notify } from '@/components/toast';
-import {
-  createInterviewByChat,
-  createInterviewByVideo,
-  createQuestion,
-} from '@/services/presetting';
+// import {
+//   createInterviewByChat,
+//   createInterviewByVideo,
+//   createQuestion,
+// } from '@/services/presetting';
 
 import usePresettingDataStore from '../../stores/presetting/usePresettingDataStore';
 
@@ -23,18 +23,18 @@ const usePresetting = () => {
       return;
     }
 
-    return createQuestion(
-      firstQuestion.name,
-      firstQuestionTags.map(({ id }) => id as number),
-    )
-      .then(({ data }) => {
-        setFirstQuestion({
-          id: data.id,
-          name: data.content,
-        });
-        return data.id;
-      })
-      .catch((e) => notify('error', e.message));
+    // return createQuestion(
+    //   firstQuestion.name,
+    //   firstQuestionTags.map(({ id }) => id as number),
+    // )
+    //   .then(({ data }) => {
+    //     setFirstQuestion({
+    //       id: data.id,
+    //       name: data.content,
+    //     });
+    //     return data.id;
+    //   })
+    //   .catch((e) => notify('error', e.message));
   };
 
   const createNewInterview = async (firstQuestionId: number) => {
@@ -44,25 +44,25 @@ const usePresetting = () => {
     }
 
     if (interviewType === 'TEXT') {
-      return createInterviewByChat({
-        questionCount,
-        firstQuestionId,
-      })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((e) => notify('error', e.message));
+      // return createInterviewByChat({
+      //   questionCount,
+      //   firstQuestionId,
+      // })
+      //   .then((res) => {
+      //     return res.data;
+      //   })
+      //   .catch((e) => notify('error', e.message));
     }
 
-    return createInterviewByVideo({
-      questionCount,
-      answerTime,
-      firstQuestionId,
-    })
-      .then(({ data }) => {
-        return data;
-      })
-      .catch((e) => notify('error', e.message));
+    // return createInterviewByVideo({
+    //   questionCount,
+    //   answerTime,
+    //   firstQuestionId,
+    // })
+    //   .then(({ data }) => {
+    //     return data;
+    //   })
+    //   .catch((e) => notify('error', e.message));
   };
 
   return { createFirstQuestion, createNewInterview };

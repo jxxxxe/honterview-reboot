@@ -7,7 +7,7 @@ import {
   TERMS_TARGET_TEXT,
   TERMS_TARGET_TITLE,
   TERMS_TITLE,
-} from '..';
+} from '../constants';
 
 const TermsDescriptionSection = () => {
   return (

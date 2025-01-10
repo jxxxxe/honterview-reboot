@@ -3,7 +3,7 @@ import { RefObject } from 'react';
 import { AutocompleteDataType } from '../type';
 
 export interface AutocompleteContextProps {
-  autocompleteRef: RefObject<HTMLDivElement> | null;
+  // autocompleteRef: RefObject<HTMLDivElement> | null;
   autoItemRef: RefObject<HTMLButtonElement> | null;
   autoBoxRef: RefObject<HTMLDivElement> | null;
   isListVisible: boolean;

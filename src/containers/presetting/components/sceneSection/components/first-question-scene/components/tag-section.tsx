@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import AutocompleteSearch from '@/components/autocompleteSearch';
-import { XIcon } from '@/components/icon';
-import Loading from '@/components/loading';
+
 import Tag from '@/components/tag';
 import { notify } from '@/components/toast';
-import usePresettingDataStore from '@/container/presetting/stores/usePresettingDataStore';
-import { getCategoryList } from '@/services/presetting';
 
 import SectionAnimationWrapper from '../../section-animation-wrapper';
+import usePresettingDataStore from '@/stores/presetting/usePresettingDataStore';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export const MAX_TAG_COUNT = 3;
 
@@ -26,11 +25,7 @@ const TagSection = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getCategoryList()
-      .then(({ data }) => {
-        setCategoryList(data);
-      })
-      .catch((e) => notify('error', e.message));
+
     setIsLoading(false);
   }, []);
 
@@ -42,7 +37,8 @@ const TagSection = () => {
       </div>
       <div className="h-[4rem] w-full">
         {isLoading ? (
-          <Loading />
+          // <Loading />
+          <></>
         ) : (
           <AutocompleteSearch
             totalDatas={categoryList}
@@ -70,7 +66,7 @@ const TagSection = () => {
                 setFirstQuestion(undefined);
               }}
             >
-              <XIcon className="h-[1.5rem] stroke-white" />
+              <XMarkIcon className="h-[1.5rem] text-white" />
             </button>
           </Tag>
         ))}

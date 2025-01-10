@@ -1,7 +1,9 @@
 import Select from '@/components/select';
-import usePresettingDataStore from '@/container/presetting/stores/usePresettingDataStore';
 
 import SectionAnimationWrapper from '../../section-animation-wrapper';
+import { QuestionCountSectionProps } from '../../../types';
+import usePresettingDataStore from '@/stores/presetting/usePresettingDataStore';
+import { countData } from '../../../constants';
 
 const CountSection = ({ setNextItemOn }: QuestionCountSectionProps) => {
   const { setQuestionCount, questionCount } = usePresettingDataStore();

@@ -1,11 +1,5 @@
+import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-
-import {
-  ArrowDownPrimaryIcon,
-  ArrowDownSecondaryIcon,
-  ArrowUpPrimaryIcon,
-  ArrowUpSecondaryIcon,
-} from '@/components/icon';
 
 export interface TimePickerProps {
   type: 'minute' | 'second';
@@ -50,9 +44,9 @@ const TimePicker = ({
         disabled={isUpLimit || isArrowDisabled}
       >
         {isUpLimit || isArrowDisabled ? (
-          <ArrowUpSecondaryIcon />
+          <ArrowUpIcon />
         ) : (
-          <ArrowUpPrimaryIcon />
+          <ArrowUpIcon className="text-primaries-primary" />
         )}
       </button>
       <div className="flex w-[4rem] items-center justify-center text-medium text-zinc-700">
@@ -66,9 +60,9 @@ const TimePicker = ({
         disabled={isDownLimit || isArrowDisabled}
       >
         {isDownLimit || isArrowDisabled ? (
-          <ArrowDownSecondaryIcon />
+          <ArrowDownIcon />
         ) : (
-          <ArrowDownPrimaryIcon />
+          <ArrowDownIcon className="text-primaries-primary" />
         )}
       </button>
     </div>

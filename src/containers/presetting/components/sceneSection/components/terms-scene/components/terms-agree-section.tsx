@@ -2,9 +2,8 @@
 
 import { useEffect } from 'react';
 
-import useStepStore from '@/container/presetting/stores/useStepStore';
-
-import { TERMS_AGREE_TEXT } from '..';
+import { TERMS_AGREE_TEXT } from '../constants';
+import useStepStore from '@/stores/presetting/useStepStore';
 
 const TermsAgreeSection = () => {
   const { setNextButtonOn, setNextButtonOff } = useStepStore();

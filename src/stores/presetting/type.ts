@@ -1,4 +1,4 @@
-import { AutocompleteDataType } from '../../components/autocompleteSearch/type';
+import { AutocompleteDataType } from '@/components/autocompleteSearch/type';
 
 export interface StepState {
   totalStep: number;
