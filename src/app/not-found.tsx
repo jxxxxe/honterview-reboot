@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import Button from '@/components/button';
-import Logo from '@/components/logo';
+import Button from '@/shared/components/button';
+import Logo from '@/shared/components/logo';
 
 const NotFound = () => {
   const router = useRouter();

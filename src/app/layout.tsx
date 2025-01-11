@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ToastContainer } from 'react-toastify';
 
-import Header from '@/components/header';
+import Header from '@/shared/components/header';
 
 const font = localFont({
   src: '../styles/fonts/PretendardVariable.woff2',

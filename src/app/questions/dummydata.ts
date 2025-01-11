@@ -1,4 +1,4 @@
-export const dummyCategories = {
+export const dummyCategoryList = {
   message: 'ok',
   data: [
     { id: 1, name: 'JavaScript' },

@@ -1,4 +1,6 @@
-import { StepBarProps } from '../type';
+export interface StepBarProps {
+  isPassed: boolean;
+}
 
 const StepBar = ({ isPassed }: StepBarProps) => {
   const bgColor = isPassed ? 'bg-primaries-primary' : 'bg-gray-100';

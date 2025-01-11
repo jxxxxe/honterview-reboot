@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Button, { ButtonType } from '@/components/button';
-import Input from '@/components/input';
+import Button, { ButtonType } from '@/shared/components/button';
+import Input from '@/shared/components/input';
 
 import { NicknameEditSectionProps } from './type';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -37,8 +37,9 @@ const NicknameEditSection = ({
           className="flex w-full justify-center gap-[0.7rem]"
           onSubmit={onSubmit}
         >
-          <Input className="h-[3rem] w-full border">
-            <Input.Text
+          <div>
+            <Input
+              className="h-[3rem] w-full border"
               value={nickname}
               onChange={onChange}
             />
@@ -51,7 +52,7 @@ const NicknameEditSection = ({
                 width="1.5rem"
               />
             </button>
-          </Input>
+          </div>
           <div className="absolute bottom-[2rem] flex gap-[1rem]">
             <Button
               styleType={ButtonType.Type3}

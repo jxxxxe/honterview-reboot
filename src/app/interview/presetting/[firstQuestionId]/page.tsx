@@ -6,8 +6,8 @@ export interface PreSettingPageProps {
   };
 }
 
-const PreSettingPage = ({ params }: PreSettingPageProps) => {
-  const { firstQuestionId } = params;
+const PreSettingPage = async ({ params }: PreSettingPageProps) => {
+  const { firstQuestionId } = await params;
   return <PreSetting firstQuestionId={Number(firstQuestionId)} />;
 };
 

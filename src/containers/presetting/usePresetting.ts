@@ -1,16 +1,16 @@
-import { notify } from '@/components/toast';
+import { notify } from '@/shared/components/toast';
 // import {
 //   createInterviewByChat,
 //   createInterviewByVideo,
 //   createQuestion,
 // } from '@/services/presetting';
 
-import usePresettingDataStore from '../../stores/presetting/usePresettingDataStore';
+import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
 
 const usePresetting = () => {
   const {
     firstQuestion,
-    firstQuestionTags,
+    firstQuestionTagList,
     setFirstQuestion,
     interviewType,
     questionCount,
@@ -25,7 +25,7 @@ const usePresetting = () => {
 
     // return createQuestion(
     //   firstQuestion.name,
-    //   firstQuestionTags.map(({ id }) => id as number),
+    //   firstQuestionTagList.map(({ id }) => id as number),
     // )
     //   .then(({ data }) => {
     //     setFirstQuestion({

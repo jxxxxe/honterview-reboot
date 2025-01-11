@@ -1,19 +1,19 @@
 import Image from 'next/image';
 
-import AnswerList from '@/containers/questions/components/answer-list';
-import { IProps } from '@/containers/questions/types';
+import AnswerList from '@/containers/question-detail/components/answer-list';
+import { IProps } from '@/containers/question-detail/types';
 import {
   dummyAnswerList,
-  dummyCategories,
+  dummyCategoryList,
   dummyQuestionsList,
 } from '../dummydata';
-import TitleWithInterviewStart from '@/containers/questions/components/title-with-interview-start';
-import TailQuestions from '@/containers/questions/components/tail-questions';
+import TitleWithInterviewStart from '@/containers/question-detail/components/title-with-interview-start';
+import TailQuestions from '@/containers/question-detail/components/tail-questions';
 
 const Page = async ({ params }: IProps) => {
   const { questionId } = params;
   const questionIdAsNumber = Number(questionId);
-  const { data: categories } = dummyCategories;
+  const { data: categoryList } = dummyCategoryList;
 
   const questionInitialData = dummyQuestionsList.data.data[0];
 
@@ -33,7 +33,7 @@ const Page = async ({ params }: IProps) => {
           categoryNames={categoryNames}
           questionId={questionIdAsNumber}
           heartsCount={heartsCount}
-          categories={categories}
+          categoryList={categoryList}
           isHearted={isHearted}
           isBookmarked={isBookmarked}
         >

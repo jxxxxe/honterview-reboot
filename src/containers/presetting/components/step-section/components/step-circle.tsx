@@ -1,5 +1,7 @@
-import { StepCircleProps } from '../type';
-
+export interface StepCircleProps {
+  number: number;
+  isPassed: boolean;
+}
 const StepCircle = ({ number, isPassed }: StepCircleProps) => {
   const bgColor = isPassed ? 'bg-primaries-primary' : 'bg-gray-100';
   const textColor = isPassed ? 'text-text-20' : 'text-neutral-600';

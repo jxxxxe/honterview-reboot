@@ -2,12 +2,15 @@ import './style.css';
 
 import { useRouter } from 'next/navigation';
 
-import Button, { ButtonType } from '@/components/button';
+import Button, { ButtonType } from '@/shared/components/button';
 
-import usePresettingDataStore from '../../../../stores/presetting/usePresettingDataStore';
-import useStepStore from '../../../../stores/presetting/useStepStore';
+import usePresettingDataStore from '../../../../shared/stores/presetting/usePresettingDataStore';
+import useStepStore from '../../../../shared/stores/presetting/useStepStore';
 import usePresetting from '../../usePresetting';
-import { PreSettingButtonSectionProps } from '../sceneSection/types';
+
+export interface PreSettingButtonSectionProps {
+  fromQuestionPage?: boolean;
+}
 
 const PreSettingButtonSection = ({
   fromQuestionPage,

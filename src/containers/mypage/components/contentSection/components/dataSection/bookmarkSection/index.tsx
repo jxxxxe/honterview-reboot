@@ -11,7 +11,7 @@ const BookmarkSection = ({ isVisible }: MyPageBookmarkDataSectionProps) => {
     >
       {dummyBookmarks.data.data?.map((content) => (
         <div
-          className="flex w-full flex-col gap-[1rem] rounded-xl border border-dotted border-gray-300 transition-transform hover:scale-105"
+          className="flex w-full flex-col gap-[1rem] rounded-xl border border-dotted border-gray-300 transition-colors hover:bg-slate-100"
           key={uuidv4()}
         >
           <BookmarkItem

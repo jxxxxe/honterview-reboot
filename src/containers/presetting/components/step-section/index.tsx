@@ -3,12 +3,19 @@ import './style.css';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import usePresettingDataStore from '../../../../stores/presetting/usePresettingDataStore';
-import useStepStore from '../../../../stores/presetting/useStepStore';
+import usePresettingDataStore from '../../../../shared/stores/presetting/usePresettingDataStore';
+import useStepStore from '../../../../shared/stores/presetting/useStepStore';
 import StepBar from './components/step-bar';
 import StepCircle from './components/step-circle';
-import { TITLE_LIST } from './constants';
-import { StepNumber } from './type';
+
+export const TITLE_LIST = {
+  1: '첫 질문 선택',
+  2: '면접 환경 세팅',
+  3: '사전 동의',
+  4: '카메라 확인',
+};
+
+export type StepNumber = 1 | 2 | 3 | 4;
 
 const StepSection = () => {
   const { currentStep, totalStep, setCameraStep, setChattingStep } =

@@ -3,15 +3,18 @@
 import { useEffect, useState } from 'react';
 
 import NotFound from '@/app/not-found';
-import DividerHorizontal from '@/components/divider-horizontal';
-import { notify } from '@/components/toast';
+import DividerHorizontal from '@/shared/components/divider-horizontal';
+import { notify } from '@/shared/components/toast';
 
 import PreSettingButtonSection from './components/buttonSection';
-import PreSettingSceneSection from './components/sceneSection';
+import PreSettingSceneSection from './components/scene-section';
 import StepSection from './components/step-section';
-import usePresettingDataStore from '../../stores/presetting/usePresettingDataStore';
-import useStepStore from '../../stores/presetting/useStepStore';
-import { PreSettingProps } from './type';
+import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
+import useStepStore from '../../shared/stores/presetting/useStepStore';
+
+export interface PreSettingProps {
+  firstQuestionId?: number;
+}
 
 const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
   const [isLoading, setIsLoading] = useState(true);
