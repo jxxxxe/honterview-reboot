@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import usePresettingDataStore from '../../../../shared/stores/presetting/usePresettingDataStore';
 import useStepStore from '../../../../shared/stores/presetting/useStepStore';
-import StepBar from './components/step-bar';
-import StepCircle from './components/step-circle';
+import StepBar from './step-bar';
+import StepCircle from './step-circle';
 
 export const TITLE_LIST = {
   1: '첫 질문 선택',

@@ -6,6 +6,8 @@ import { notify } from '@/shared/components/toast';
 // } from '@/services/presetting';
 
 import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
+import { dummyQuestionsList } from '@/app/questions/dummydata';
+import { dummyQuestions } from './components/scene-section/first-question-scene/dummydata';
 
 const usePresetting = () => {
   const {
@@ -23,6 +25,7 @@ const usePresetting = () => {
       return;
     }
 
+    return dummyQuestions[0].id;
     // return createQuestion(
     //   firstQuestion.name,
     //   firstQuestionTagList.map(({ id }) => id as number),
@@ -53,7 +56,7 @@ const usePresetting = () => {
       //   })
       //   .catch((e) => notify('error', e.message));
     }
-
+    return 1;
     // return createInterviewByVideo({
     //   questionCount,
     //   answerTime,

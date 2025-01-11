@@ -1,10 +1,10 @@
 import { AnimatePresence } from 'framer-motion';
 
 import useStepStore from '../../../../shared/stores/presetting/useStepStore';
-import FirstQuestionScene from './components/first-question-scene';
-import InterviewSettingScene from './components/interview-setting-scene';
-import TermsScene from './components/terms-scene';
-import VideoCheckScene from './components/video-check-scene';
+import FirstQuestionScene from './first-question-scene';
+import InterviewSettingScene from './interview-setting-scene';
+import TermsScene from './terms-scene';
+import VideoCheckScene from './video-check-scene';
 
 const PreSettingSceneSection = () => {
   const { currentStep } = useStepStore();

@@ -35,9 +35,10 @@ const PreSettingButtonSection = ({
       return;
     }
 
-    const isNew = firstQuestion?.id === 'new';
-
-    const questionId = isNew ? await createFirstQuestion() : firstQuestion?.id;
+    const questionId =
+      firstQuestion?.id === 'new'
+        ? await createFirstQuestion()
+        : firstQuestion?.id;
     const interviewId = await createNewInterview(questionId);
 
     if (!interviewId) {

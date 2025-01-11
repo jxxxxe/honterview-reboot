@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 import { dummyQuestionsList } from '../dummydata';
+import { QuestionDetailProps } from './page';
 
 export const generateMetadata = async ({
   params,
-}: {
-  params: { questionId: string };
-}): Promise<Metadata> => {
-  const { questionId } = params;
+}: QuestionDetailProps): Promise<Metadata> => {
+  const { questionId } = await params;
 
   const { content } = dummyQuestionsList.data.data[Number(questionId)];
   const title = `혼터뷰 - ${content}`;

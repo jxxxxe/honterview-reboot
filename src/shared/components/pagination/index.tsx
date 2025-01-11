@@ -32,13 +32,13 @@ const Pagination = ({
       total={total}
       onPageChange={onPageChange}
     >
-      <div className={style}>{children}</div>
+      <div className={style}>
+        <PrevButton />
+        <PageButtons />
+        <NextButton />
+      </div>
     </PaginationProvider>
   );
 };
-
-Pagination.PrevButton = PrevButton;
-Pagination.NextButton = NextButton;
-Pagination.PageButtons = PageButtons;
 
 export default Pagination;

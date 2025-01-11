@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
-import FilterInput from './components/filter-input';
-import Toggle from './components/toggle';
+import FilterInput from './filter-input';
+import Toggle from './toggle';
 import { dummyCategoryList } from '@/app/questions/dummydata';
 import { useQuestionList } from '../../contexts';
-import SelectedTagList from './components/selected-tags';
-import UnSelectedTagList from './components/unselected-tags';
+import SelectedTagList from './selected-tags';
+import UnSelectedTagList from './unselected-tags';
 
 const QuestionFilter = () => {
   const [toggle, setToggle] = useState(true);

@@ -18,11 +18,7 @@ const QuestionPageination = () => {
         limit={5}
         total={totalSize}
         onPageChange={pageHandler}
-      >
-        <Pagination.PrevButton />
-        <Pagination.PageButtons />
-        <Pagination.NextButton />
-      </Pagination>
+      />
     )
   );
 };

@@ -1,5 +1,5 @@
-import ContentSection from '@/containers/mypage/components/contentSection';
-import NickNameSection from '@/containers/mypage/components/nickNameSection';
+import ContentSection from '@/containers/mypage/components/content-section';
+import NickNameSection from '@/containers/mypage/components/nickname-section';
 
 import type { Metadata } from 'next';
 

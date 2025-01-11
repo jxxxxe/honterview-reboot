@@ -8,7 +8,7 @@ export interface IPaginationContext {
   handleSelectPage: (newPage: number) => void;
   handleMovePrevPage: () => void;
   handleMoveNextPage: () => void;
-  createPageButtons: (className?: string) => void;
+  createPageButtons: (className?: string) => ReactNode;
 }
 
 export interface IPaginationProviderProps {

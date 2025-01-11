@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 import AnswerList from '@/containers/question-detail/components/answer-list';
-import { IProps } from '@/containers/question-detail/types';
 import {
   dummyAnswerList,
   dummyCategoryList,
@@ -9,9 +8,14 @@ import {
 } from '../dummydata';
 import TitleWithInterviewStart from '@/containers/question-detail/components/title-with-interview-start';
 import TailQuestions from '@/containers/question-detail/components/tail-questions';
+export interface QuestionDetailProps {
+  params: Promise<{
+    questionId: string;
+  }>;
+}
 
-const Page = async ({ params }: IProps) => {
-  const { questionId } = params;
+const QuestionDetailPage = async ({ params }: QuestionDetailProps) => {
+  const { questionId } = await params;
   const questionIdAsNumber = Number(questionId);
   const { data: categoryList } = dummyCategoryList;
 
@@ -59,10 +63,9 @@ const Page = async ({ params }: IProps) => {
           />
         </div>
       )}
-
       <TailQuestions questionId={questionIdAsNumber} />
     </>
   );
 };
 
-export default Page;
+export default QuestionDetailPage;

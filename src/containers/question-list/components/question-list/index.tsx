@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { v4 as v4uuid } from 'uuid';
 
-import QuestionInterviewButton from './components/question-interview-button';
-import QuestionTag from './components/question-tag';
-import QuestionTitle from './components/question-title';
+import QuestionInterviewButton from './question-interview-button';
+import QuestionTag from './question-tag';
+import QuestionTitle from './question-title';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { useQuestionList } from '../../contexts';
 

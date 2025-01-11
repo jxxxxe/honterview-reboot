@@ -1,7 +1,7 @@
 'use client';
 
 import AutocompleteSearch from '@/shared/components/autocomplete-search';
-import { dummyQuestions } from '../../../presetting/components/scene-section/components/first-question-scene/dummydata';
+import { dummyQuestions } from '../../../presetting/components/scene-section/first-question-scene/dummydata';
 import { useQuestionList } from '../../contexts';
 import { redirect } from 'next/navigation';
 import { getSearchResultList } from './actions';

@@ -15,7 +15,7 @@ export const PaginationContext = createContext<IPaginationContext>({
   handleSelectPage: () => {},
   handleMovePrevPage: () => {},
   handleMoveNextPage: () => {},
-  createPageButtons: () => {},
+  createPageButtons: () => <></>,
 });
 
 export const PaginationProvider = ({

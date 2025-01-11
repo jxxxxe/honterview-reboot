@@ -7,8 +7,8 @@ import Tag from '@/shared/components/tag';
 import { ReactNode } from 'react';
 
 import { ICategory } from '@/types/category-list';
-import HeartButton from './components/heart-button';
-import BookmarkButton from './components/bookmark-button';
+import HeartButton from './heart-button';
+import BookmarkButton from './bookmark-button';
 
 export interface IProps {
   children: ReactNode;
