@@ -16,7 +16,7 @@ model User {
 
   questions      Question[]
   answers        Answer[]
-  answer_likes   AwnserLike[]
+  answer_likes   AnswerLike[]
   question_likes QuestionLike[]
 
   created_at DateTime @default(now())
@@ -52,7 +52,7 @@ model Answer {
   id      Int          @id @default(autoincrement())
   content String
   visible Boolean?     @default(true)
-  likes   AwnserLike[]
+  likes   AnswerLike[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -74,7 +74,7 @@ model QuestionLike {
   @@id([userId, questionId])
 }
 
-model AwnserLike {
+model AnswerLike {
   created_at DateTime @default(now())
 
   user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
