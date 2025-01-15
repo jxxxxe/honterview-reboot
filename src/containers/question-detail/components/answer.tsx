@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { notify } from '@/shared/components/toast';
 
-import { HeartIcon as SelectedHeartIcon } from '@heroicons/react/24/solid';
+import { LikeIcon as SelectedLikeIcon } from '@heroicons/react/24/solid';
 
 interface IProps {
   nickname: string;
@@ -13,8 +13,8 @@ interface IProps {
   isBlur?: boolean;
   className?: string;
   answerId: number;
-  isHearted: boolean;
-  heartsCount: number;
+  isLiked: boolean;
+  likeCount: number;
   questionId: number;
 }
 
@@ -24,14 +24,14 @@ const Answer = ({
   className,
   answerId,
   questionId,
-  isHearted: initialIsHearted,
+  isLiked: initialIsLiked,
 }: IProps) => {
-  const [isHeart, setIsHeart] = useState(initialIsHearted);
+  const [isLike, setIsLike] = useState(initialIsLiked);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleHeartClick = async () => {
+  const handleLikeClick = async () => {
     setIsLoading(true);
-    setIsHeart(!isHeart);
+    setIsLike(!isLike);
     setIsLoading(false);
   };
 
@@ -48,13 +48,13 @@ const Answer = ({
         <button
           type="button"
           disabled={isLoading}
-          onClick={handleHeartClick}
+          onClick={handleLikeClick}
           className="*:size-[2.5rem]"
         >
-          {isHeart ? (
-            <SelectedHeartIcon className="text-primaries-active" />
+          {isLike ? (
+            <SelectedLikeIcon className="text-primaries-active" />
           ) : (
-            <SelectedHeartIcon className="text-slate-300 hover:text-blue-300" />
+            <SelectedLikeIcon className="text-slate-300 hover:text-blue-300" />
           )}
         </button>
       </div>

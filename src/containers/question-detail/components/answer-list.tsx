@@ -24,15 +24,15 @@ const AnswerList = ({ questionId, isModalLoad }: IProps) => {
 
   return (
     <>
-      {data.map(({ nickname, content, id, heartsCount }) => (
+      {data.map(({ nickname, content, id, likeCount }) => (
         <Answer
           key={uuidv4()}
           answerId={id}
           questionId={questionId}
           nickname={nickname}
           content={content}
-          heartsCount={heartsCount}
-          isHearted={false}
+          likeCount={likeCount}
+          isLiked={false}
         />
       ))}
       {isInvisible && (

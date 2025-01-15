@@ -7,7 +7,7 @@ import Tag from '@/shared/components/tag';
 import { ReactNode } from 'react';
 
 import { ICategory } from '@/shared/types/category-list';
-import HeartButton from './heart-button';
+import LikeButton from './like-button';
 import BookmarkButton from './bookmark-button';
 
 export interface IProps {
@@ -15,8 +15,8 @@ export interface IProps {
   questionTitle: string;
   categoryNames: string[];
   questionId: number;
-  heartsCount: number;
-  isHearted: boolean;
+  likeCount: number;
+  isLiked: boolean;
   isBookmarked: boolean;
   categoryList: ICategory[];
 }
@@ -28,18 +28,18 @@ const TitleWithInterviewStart = async ({
   questionTitle,
   categoryNames,
   questionId,
-  heartsCount,
+  likeCount,
   categoryList,
-  isHearted,
+  isLiked,
   isBookmarked,
 }: IProps) => {
   return (
     <div>
       <div className="flex items-center justify-end">
-        <HeartButton
+        <LikeButton
           questionId={questionId}
-          isHearted={isHearted}
-          questionHeartCount={heartsCount}
+          isLiked={isLiked}
+          questionLikeCount={likeCount}
         />
         <BookmarkButton
           questionId={questionId}

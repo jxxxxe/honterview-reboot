@@ -6,7 +6,7 @@ import { v4 as v4uuid } from 'uuid';
 import QuestionInterviewButton from './question-interview-button';
 import QuestionTag from './question-tag';
 import QuestionTitle from './question-title';
-import { HeartIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as LikeIcon } from '@heroicons/react/24/outline';
 import { useQuestionList } from '../../contexts';
 
 const QuestionList = () => {
@@ -18,7 +18,7 @@ const QuestionList = () => {
     </p>
   ) : (
     <div>
-      {questionList.map(({ id, content, categoryNames, heartsCount }) => (
+      {questionList.map(({ id, content, categoryNames, likeCount }) => (
         <div
           key={v4uuid()}
           className="rounded-lg px-[2rem] py-[2rem] hover:bg-gray-100"
@@ -40,8 +40,8 @@ const QuestionList = () => {
                 />
               ))}
             <div className="ml-auto flex items-center gap-2 px-[1.5rem] text-extraLarge text-text-60">
-              <HeartIcon className="size-10" />
-              {heartsCount}
+              <LikeIcon className="size-10" />
+              {likeCount}
             </div>
           </div>
         </div>

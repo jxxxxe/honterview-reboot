@@ -1,9 +1,9 @@
 export interface IQuestion {
   id: number;
   content: string;
-  heartsCount: number;
+  likeCount: number;
   categoryNames: string[];
-  isHearted?: boolean;
+  isLiked?: boolean;
   isBookmarked?: boolean;
 }
 

@@ -13,7 +13,7 @@ export interface MyPageBookmarkDataType {
   categoryNames: string[];
 }
 
-const BookmarkItem = ({
+const LikeItem = ({
   id,
   content: title,
   categoryNames: categoryList,
@@ -58,4 +58,4 @@ const BookmarkItem = ({
   );
 };
 
-export default BookmarkItem;
+export default LikeItem;

@@ -24,8 +24,8 @@ const QuestionDetailPage = async ({ params }: QuestionDetailProps) => {
   const {
     content: questionTitle,
     categoryNames,
-    heartsCount,
-    isHearted,
+    likeCount,
+    isLiked,
     isBookmarked,
   } = questionInitialData;
 
@@ -36,9 +36,9 @@ const QuestionDetailPage = async ({ params }: QuestionDetailProps) => {
           questionTitle={questionTitle}
           categoryNames={categoryNames}
           questionId={questionIdAsNumber}
-          heartsCount={heartsCount}
+          likeCount={likeCount}
           categoryList={categoryList}
-          isHearted={isHearted}
+          isLiked={isLiked}
           isBookmarked={isBookmarked}
         >
           {questionTitle}
