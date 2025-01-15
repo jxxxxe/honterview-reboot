@@ -6,7 +6,7 @@ import Tag from '@/shared/components/tag';
 
 import { ReactNode } from 'react';
 
-import { ICategory } from '@/types/category-list';
+import { ICategory } from '@/shared/types/category-list';
 import HeartButton from './heart-button';
 import BookmarkButton from './bookmark-button';
 

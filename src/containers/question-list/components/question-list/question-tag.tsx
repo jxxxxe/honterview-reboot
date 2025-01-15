@@ -1,5 +1,5 @@
 import Button, { ButtonType } from '@/shared/components/button';
-import { ICategory } from '@/types/category-list';
+import { ICategory } from '@/shared/types/category-list';
 
 export interface QuestionTagProps {
   tag: string;

@@ -14,7 +14,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import { RefObject } from 'react';
 
-import { ICategory } from '@/types/category-list';
+import { ICategory } from '@/shared/types/category-list';
 
 export interface IProps {
   questionId: number;

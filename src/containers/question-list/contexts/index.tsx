@@ -7,7 +7,7 @@ import {
 import { notify } from '@/shared/components/toast';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import QuestionListContextTypes, { sortType } from './type';
-import { ICategory } from '@/types/category-list';
+import { ICategory } from '@/shared/types/category-list';
 
 const QuestionListContext = createContext<QuestionListContextTypes>({
   categoryList: [],
