@@ -1,3 +1,5 @@
+'use server';
+
 import prisma from '@/shared/libs/prisma';
 
 const getCategoryList = async () => {

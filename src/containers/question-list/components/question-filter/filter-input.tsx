@@ -45,7 +45,7 @@ const FilterInput = ({
   return (
     <div className="relative">
       <Input
-        className="h-[4rem] w-[20rem] flex-none rounded-[1rem] px-[12px] py-[5px] text-[1.6rem]"
+        className="h-[4rem] min-w-[20rem] flex-none rounded-[1rem] px-[12px] py-[5px] text-[1.6rem]"
         onChange={handleSearchInputChange}
         onKeyDown={handleKeyDown}
         value={searchQuery}

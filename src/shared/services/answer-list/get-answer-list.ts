@@ -1,4 +1,6 @@
-import { ANSWER_COUNT_IN_PAGE } from '@/shared/constants/count-in-page';
+'use server';
+
+import { ANSWER_COUNT_IN_PAGE } from '@/containers/question-detail/constants';
 import prisma from '@/shared/libs/prisma';
 
 const getAnswerList = async (questionId: number, page = 0) => {
@@ -7,6 +9,7 @@ const getAnswerList = async (questionId: number, page = 0) => {
       questionId,
     },
     select: {
+      id: true,
       content: true,
       user: {
         select: {

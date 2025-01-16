@@ -1,115 +1,130 @@
 'use client';
 
-import {
-  dummyCategoryList,
-  dummyQuestionsList,
-} from '@/app/questions/dummydata';
 import { notify } from '@/shared/components/toast';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import QuestionListContextTypes, { sortType } from './type';
+import QuestionListContextTypes from './type';
 import { ICategory } from '@/shared/types/category-list';
+import getCategoryList from '@/shared/services/category/get-category-list';
+import {
+  getCachedQuestionList,
+  getQuestionCount,
+} from '@/shared/services/question-list/get-question-list';
+import { CATEGORY_SELECTED_COUNT } from '@/shared/constants/question';
+import QuestionInput from '../components/question-input/question-input';
 
 const QuestionListContext = createContext<QuestionListContextTypes>({
   categoryList: [],
-  setCategoryList: () => {},
   questionList: [],
-  setQuestionList: () => {},
-  sortType: '최신순',
-  setSortType: () => {},
+  isLikeOrder: false,
+  setIsLikeOrder: () => {},
   selectedTagList: [],
   setSelectedTagList: () => {},
-  nowPage: 1,
+  nowPage: 0,
   setNowPage: () => {},
   totalSize: 0,
-  setTotalSize: () => {},
   questionsInput: '',
   setQuestionsInput: () => {},
   handleTagClick: () => {},
-  handleTagDeleteClick: () => {},
+  handleTagCancelClick: () => {},
 });
 
 const QuestionListProvider = ({ children }) => {
-  const [categorieList, setCategoryList] = useState<ICategory[]>([]);
-  const [questionList, setQuestionList] = useState([]);
-  const [sortType, setSortType] = useState<sortType>('최신순');
-  const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
-  const [nowPage, setNowPage] = useState<number>(1);
-  const [totalSize, setTotalSize] = useState<number>(0);
-  const [questionsInput, setQuestionsInput] = useState<string>('');
+  const [questionsInput, setQuestionsInput] = useState('');
 
+  const [categoryList, setCategoryList] = useState<ICategory[]>([]);
+  const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
+
+  const [isLikeOrder, setIsLikeOrder] = useState(false);
+
+  const [questionList, setQuestionList] = useState([]);
+
+  const [nowPage, setNowPage] = useState(0);
+  const [totalSize, setTotalSize] = useState(0);
+
+  //맨 처음 카테고리 패치
   useEffect(() => {
-    const fetchData = async () => {
-      const categoryListData = dummyCategoryList;
+    const fetchCategoryList = async () => {
+      const categoryListData = await getCategoryList();
       setCategoryList(
-        categoryListData.data.sort((a: { name: string }, b: { name: string }) =>
+        categoryListData.sort((a: { name: string }, b: { name: string }) =>
           a.name.localeCompare(b.name),
         ),
       );
+      const questionListCount = await getQuestionCount();
+      setTotalSize(questionListCount);
     };
 
-    fetchData();
+    fetchCategoryList();
   }, []);
 
+  //검색어, 카테고리, 정렬 바뀔 때마다 페이지 갱신
   useEffect(() => {
-    setNowPage(1);
-  }, [categorieList, sortType, selectedTagList, questionsInput]);
+    setNowPage(0);
 
-  useEffect(() => {
     const fetchData = async () => {
-      const questionsListData = dummyQuestionsList;
-      setQuestionList(questionsListData.data.data);
-      setTotalSize(questionsListData.data.totalElements);
-    };
+      const questionListData = await getCachedQuestionList(
+        questionsInput,
+        categoryList,
+        isLikeOrder,
+      );
+      setQuestionList(questionListData);
 
+      const questionListCount = await getQuestionCount(
+        questionsInput,
+        categoryList,
+      );
+      setTotalSize(questionListCount);
+    };
     fetchData();
-  }, [nowPage, questionsInput, selectedTagList, sortType]);
+  }, [questionsInput, selectedTagList, isLikeOrder]);
 
   const handleTagClick = (tag: string) => {
-    if (selectedTagList.length < 3) {
+    if (selectedTagList.length < CATEGORY_SELECTED_COUNT) {
       setSelectedTagList([...selectedTagList, tag]);
-    } else if (selectedTagList.length >= 3) {
+    } else {
       notify('warning', '3개 이상 선택이 불가합니다');
     }
   };
 
-  const handleTagDeleteClick = (tag: string) => {
+  const handleTagCancelClick = (tag: string) => {
     setSelectedTagList((prev) => prev.filter((name) => name !== tag));
   };
 
   const value = useMemo(
     () => ({
-      categoryList: categorieList,
-      setCategoryList,
-      questionList,
-      setQuestionList,
-      sortType,
-      setSortType,
+      questionsInput,
+      setQuestionsInput,
+
+      categoryList,
       selectedTagList,
       setSelectedTagList,
+
+      isLikeOrder,
+      setIsLikeOrder,
+
+      questionList,
+
       nowPage,
       setNowPage,
       totalSize,
-      setTotalSize,
-      questionsInput,
-      setQuestionsInput,
+
       handleTagClick,
-      handleTagDeleteClick,
+      handleTagCancelClick,
     }),
     [
-      categorieList,
-      setCategoryList,
-      questionList,
-      setQuestionList,
-      sortType,
-      setSortType,
+      questionsInput,
+      setQuestionsInput,
+      categoryList,
       selectedTagList,
       setSelectedTagList,
+      isLikeOrder,
+      setIsLikeOrder,
+      questionList,
       nowPage,
       setNowPage,
       totalSize,
-      setTotalSize,
-      questionsInput,
-      setQuestionsInput,
+      handleTagClick,
+      handleTagCancelClick,
     ],
   );
 

@@ -3,17 +3,17 @@
 import AutocompleteSearch from '@/shared/components/autocomplete-search';
 import { dummyQuestions } from '../../../presetting/components/scene-section/first-question-scene/dummydata';
 import { useQuestionList } from '../../contexts';
-import { redirect } from 'next/navigation';
-import { getSearchResultList } from './actions';
+import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 import InputIcon from '@/shared/components/input-icon';
 import { MagnifyingGlassCircleIcon } from '@heroicons/react/24/solid';
 
 const QuestionInput = () => {
-  const { setQuestionsInput, setQuestionList } = useQuestionList();
+  const { setQuestionsInput } = useQuestionList();
+  const { push } = useRouter();
   const onSelectItem = (value) => {
     setQuestionsInput(value.name);
-    redirect(`/questions/${value.id}`);
+    push(`/questions/${value.id}`);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -22,17 +22,14 @@ const QuestionInput = () => {
     const formData = new FormData(e.currentTarget);
 
     const searchWord = formData.get('question-list-input') as string;
-
-    console.log(searchWord);
-    const questionList = await getSearchResultList(searchWord);
-    setQuestionList(questionList);
+    setQuestionsInput(searchWord);
   };
 
   return (
     <div className="flex flex-col items-center gap-10 py-10">
       <form
         onSubmit={handleSubmit}
-        className="relative"
+        className="relative w-full max-w-[50rem]"
       >
         <AutocompleteSearch
           className="w-[50rem]"

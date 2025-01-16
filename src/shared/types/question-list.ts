@@ -4,7 +4,6 @@ export interface IQuestion {
   likeCount: number;
   categoryNames: string[];
   isLiked?: boolean;
-  isBookmarked?: boolean;
 }
 
 export interface IPagination {
@@ -18,7 +17,13 @@ export interface IPagination {
   data: IQuestion[];
 }
 
-export interface IQuestionsList {
-  message: string;
-  data: IPagination;
+export interface IGetQuestions {
+  id: number;
+  content: string;
+  categories: {
+    name: string;
+  }[];
+  _count: {
+    likes: number;
+  };
 }

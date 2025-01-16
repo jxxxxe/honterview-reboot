@@ -4,40 +4,25 @@ import { useEffect, useState } from 'react';
 
 import FilterInput from './filter-input';
 import Toggle from './toggle';
-import { dummyCategoryList } from '@/app/questions/dummydata';
 import { useQuestionList } from '../../contexts';
 import SelectedTagList from './selected-tags';
 import UnSelectedTagList from './unselected-tags';
 
 const QuestionFilter = () => {
   const [toggle, setToggle] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchTagWord, setSearchTagWord] = useState('');
 
   const {
     categoryList,
-    setCategoryList,
     selectedTagList,
     setSelectedTagList,
     handleTagClick,
-    handleTagDeleteClick,
+    handleTagCancelClick,
   } = useQuestionList();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const categoryListData = dummyCategoryList;
-      setCategoryList(
-        categoryListData.data.sort((a: { name: string }, b: { name: string }) =>
-          a.name.localeCompare(b.name),
-        ),
-      );
-    };
-
-    fetchData();
-  }, []);
 
   const filteredData = categoryList.filter(
     (tag) =>
-      tag.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      tag.name.toLowerCase().includes(searchTagWord.toLowerCase()) &&
       !selectedTagList
         .map((tag) => tag.toLowerCase())
         .includes(tag.name.toLowerCase()),
@@ -50,8 +35,8 @@ const QuestionFilter = () => {
         style={toggle ? { overflow: 'hidden' } : { flexWrap: 'wrap' }}
       >
         <FilterInput
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          searchQuery={searchTagWord}
+          setSearchQuery={setSearchTagWord}
           filteredData={filteredData}
           handleTagClick={handleTagClick}
         />
@@ -67,7 +52,7 @@ const QuestionFilter = () => {
       <SelectedTagList
         selectedTagList={selectedTagList}
         setSelectedTagList={setSelectedTagList}
-        onDeleteTagClick={handleTagDeleteClick}
+        onDeleteTagClick={handleTagCancelClick}
       />
     </div>
   );

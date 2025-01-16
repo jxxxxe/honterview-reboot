@@ -18,21 +18,6 @@ export const getQuestion = async (questionId: number) => {
           name: true,
         },
       },
-      answers: {
-        select: {
-          content: true,
-          _count: {
-            select: {
-              likes: true,
-            },
-          },
-          user: {
-            select: {
-              nickname: true,
-            },
-          },
-        },
-      },
     },
   });
 
