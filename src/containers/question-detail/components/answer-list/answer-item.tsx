@@ -1,37 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useOptimistic, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { notify } from '@/shared/components/toast';
-
-import { LikeIcon as SelectedLikeIcon } from '@heroicons/react/24/solid';
+import { HeartIcon as SelectedLikeIcon } from '@heroicons/react/24/solid';
+import { likeAnswer, unLikeAnswer } from '@/shared/services/answer/like-answer';
 
 interface IProps {
+  answerId: number;
   nickname: string;
   content: string;
-  isBlur?: boolean;
-  className?: string;
-  answerId: number;
   isLiked: boolean;
   likeCount: number;
-  questionId: number;
+  className?: string;
 }
 
-const Answer = ({
+const AnswerItem = ({
+  answerId,
   nickname,
   content,
-  className,
-  answerId,
-  questionId,
+  likeCount,
   isLiked: initialIsLiked,
+  className,
 }: IProps) => {
-  const [isLike, setIsLike] = useState(initialIsLiked);
   const [isLoading, setIsLoading] = useState(false);
+  const [likeState, dispatch] = useOptimistic(initialIsLiked, (like) => !like);
 
   const handleLikeClick = async () => {
     setIsLoading(true);
-    setIsLike(!isLike);
+    dispatch(null);
+    likeState ? await unLikeAnswer(answerId, 1) : await likeAnswer(answerId, 1);
     setIsLoading(false);
   };
 
@@ -51,16 +49,17 @@ const Answer = ({
           onClick={handleLikeClick}
           className="*:size-[2.5rem]"
         >
-          {isLike ? (
+          {likeState ? (
             <SelectedLikeIcon className="text-primaries-active" />
           ) : (
             <SelectedLikeIcon className="text-slate-300 hover:text-blue-300" />
           )}
         </button>
+        {likeCount}
       </div>
       <p className="text-[1.8rem] font-light text-[#4e5968]">{content}</p>
     </div>
   );
 };
 
-export default Answer;
+export default AnswerItem;

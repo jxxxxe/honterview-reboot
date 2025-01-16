@@ -1,13 +1,24 @@
 import type { Metadata } from 'next';
-import { dummyQuestionsList } from '../dummydata';
 import { QuestionDetailProps } from './page';
+import { getQuestion } from '@/shared/services/question/get-question';
+import { notFound } from 'next/navigation';
 
 export const generateMetadata = async ({
   params,
 }: QuestionDetailProps): Promise<Metadata> => {
-  const { questionId } = await params;
+  const { id } = await params;
+  const questionId = Number(id);
+  if (isNaN(questionId)) {
+    notFound();
+  }
 
-  const { content } = dummyQuestionsList.data.data[Number(questionId)];
+  const question = await getQuestion(questionId);
+
+  if (!question) {
+    notFound();
+  }
+
+  const { content } = question;
   const title = `혼터뷰 - ${content}`;
   const description = `${content}에 대한 답변을 찾아보세요. 면접 준비에 도움이 되는 다양한 정보와 팁을 혼터뷰에서 제공합니다.`;
 
@@ -29,7 +40,11 @@ export const generateMetadata = async ({
 const QuestionDetailLayout = ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
-  return <div className="wrap m-auto my-9 max-w-[70rem] px-5">{children}</div>;
+  return (
+    <div className="fit-wrap m-5 min-w-[32rem] max-w-[100rem] md:mx-20 md:my-10 lg:mx-auto">
+      {children}
+    </div>
+  );
 };
 
 export default QuestionDetailLayout;
