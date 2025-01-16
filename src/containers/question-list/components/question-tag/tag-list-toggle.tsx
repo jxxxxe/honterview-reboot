@@ -7,7 +7,7 @@ export interface ToggleProps {
   setToggle: (toggle: boolean) => void;
 }
 
-const Toggle = ({ toggle, setToggle }: ToggleProps) => {
+const TagListToggle = ({ toggle, setToggle }: ToggleProps) => {
   return (
     <div className="absolute right-0 bg-gradient-to-r from-transparent via-white/50 to-white pl-5">
       <Button
@@ -23,4 +23,4 @@ const Toggle = ({ toggle, setToggle }: ToggleProps) => {
   );
 };
 
-export default Toggle;
+export default TagListToggle;

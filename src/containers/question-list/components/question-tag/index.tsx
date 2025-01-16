@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
-import FilterInput from './filter-input';
-import Toggle from './toggle';
+import TagFilterInput from './tag-filter-input';
+import TagListToggle from './tag-list-toggle';
 import { useQuestionList } from '../../contexts';
-import SelectedTagList from './selected-tags';
-import UnSelectedTagList from './unselected-tags';
+import SelectedTagList from './tag-list-selected';
+import UnSelectedTagList from './tag-list-unselected';
 
 const QuestionFilter = () => {
   const [toggle, setToggle] = useState(true);
@@ -34,7 +34,7 @@ const QuestionFilter = () => {
         className="relative flex gap-4"
         style={toggle ? { overflow: 'hidden' } : { flexWrap: 'wrap' }}
       >
-        <FilterInput
+        <TagFilterInput
           searchQuery={searchTagWord}
           setSearchQuery={setSearchTagWord}
           filteredData={filteredData}
@@ -44,7 +44,7 @@ const QuestionFilter = () => {
           filteredData={filteredData}
           handleTagClick={handleTagClick}
         />
-        <Toggle
+        <TagListToggle
           toggle={toggle}
           setToggle={setToggle}
         />

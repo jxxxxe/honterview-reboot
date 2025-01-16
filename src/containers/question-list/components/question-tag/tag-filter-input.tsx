@@ -12,7 +12,7 @@ export interface FilterInputProps {
   }[];
 }
 
-const FilterInput = ({
+const TagFilterInput = ({
   searchQuery,
   setSearchQuery,
   filteredData,
@@ -58,4 +58,4 @@ const FilterInput = ({
   );
 };
 
-export default FilterInput;
+export default TagFilterInput;
