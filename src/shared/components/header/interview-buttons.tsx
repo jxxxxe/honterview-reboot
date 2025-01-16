@@ -27,7 +27,6 @@ const Navigation = () => {
       <ul className="flex items-center justify-center gap-10">
         {navigationItems.map(({ url, replace, scroll, title }) => {
           const enabledStyle = pathname === url ? 'text-primaries-primary' : '';
-          console.log(pathname, url);
           return (
             <Link
               key={v4uuid()}

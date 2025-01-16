@@ -11,7 +11,7 @@ const Header = async () => {
   // const isAdmin = userAuth?.data?.role[0].authority === 'ROLE_ADMIN';
 
   return (
-    <header className="flex h-28 min-w-[32rem] flex-wrap items-center justify-between px-8 text-large md:justify-around">
+    <header className="flex h-28 min-w-[32rem] flex-wrap items-center justify-between px-5 text-large md:justify-around">
       <Title />
       <Navigation />
       <AuthButtons />
