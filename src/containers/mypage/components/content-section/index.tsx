@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import BookmarkSection from './data-section/bookmark-list-section';
+import LikeQuestionSection from './data-section/like-list-section';
 import ResultSection from './data-section/result-list-section';
 import NavigationSection from './navigation-section';
 
@@ -20,7 +20,7 @@ const ContentSection = () => {
         activeMenu={activeMenu}
         onClick={setActiveMenu}
       />
-      <BookmarkSection isVisible={isBookmarkOn} />
+      <LikeQuestionSection isVisible={isBookmarkOn} />
       <ResultSection isVisible={isResultOn} />
     </div>
   );

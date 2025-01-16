@@ -7,7 +7,7 @@ export interface MyPageBookmarkDataSectionProps {
   isVisible: boolean;
 }
 
-const BookmarkSection = ({ isVisible }: MyPageBookmarkDataSectionProps) => {
+const LikeQuestionSection = ({ isVisible }: MyPageBookmarkDataSectionProps) => {
   return (
     <div
       className={`tablet:w-[50rem] ${!isVisible && 'hidden'} flex w-full flex-1 flex-col items-center gap-[2rem] p-[1rem] pb-[3rem]`}
@@ -28,4 +28,4 @@ const BookmarkSection = ({ isVisible }: MyPageBookmarkDataSectionProps) => {
   );
 };
 
-export default BookmarkSection;
+export default LikeQuestionSection;

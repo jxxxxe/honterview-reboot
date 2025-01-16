@@ -1,12 +1,12 @@
 import { startTransition, useOptimistic, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { BookmarkIcon } from '@heroicons/react/24/outline';
-import { BookmarkIcon as SelectedBookmarkIcon } from '@heroicons/react/24/solid';
+import { HeartIcon as LikeIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as SelectedLikeIcon } from '@heroicons/react/24/solid';
 
 import Link from 'next/link';
 
-export interface MyPageBookmarkDataType {
+interface LikeItemProps {
   id: number;
   content: string;
   likeCount?: number;
@@ -17,11 +17,11 @@ const LikeItem = ({
   id,
   content: title,
   categoryNames: categoryList,
-}: MyPageBookmarkDataType) => {
-  const [isBookmarked, dispatch] = useOptimistic(true, (prev, _) => !prev);
+}: LikeItemProps) => {
+  const [isLiked, trigger] = useOptimistic(true, (prev, _) => !prev);
   const onClick = (e) => {
     e.preventDefault();
-    startTransition(() => dispatch(undefined));
+    startTransition(() => trigger(undefined));
   };
 
   return (
@@ -51,7 +51,7 @@ const LikeItem = ({
           onClick={onClick}
           className="*:size-[2.5rem] *:text-primaries-primary"
         >
-          {isBookmarked ? <SelectedBookmarkIcon /> : <BookmarkIcon />}
+          {isLiked ? <SelectedLikeIcon /> : <LikeIcon />}
         </button>
       </div>
     </Link>
