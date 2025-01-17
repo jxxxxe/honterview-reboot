@@ -6,17 +6,18 @@ import { useQuestionList } from '../contexts';
 
 const QuestionSort = () => {
   const [sortType, setSortType] = useState('최신순');
-  const { setIsLikeOrder } = useQuestionList();
+  const { setOrderBy } = useQuestionList();
 
   const onSelectSort = (e) => {
-    if (sortType === '좋아요순') {
-      setIsLikeOrder(false);
+    const orderType = e.target.value;
+
+    if (orderType === '최신순') {
+      setOrderBy('recent');
+    } else if (orderType === '좋아요순') {
+      setOrderBy('like');
     }
 
-    if (sortType === '최신순') {
-      setIsLikeOrder(true);
-    }
-    setSortType(e.target.value);
+    setSortType(orderType);
   };
 
   return (

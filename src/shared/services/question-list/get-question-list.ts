@@ -71,7 +71,7 @@ export const getQuestionCount = async (
         contains: searchWord,
         mode: 'insensitive',
       },
-      ...(categoryIdList.length && {
+      ...(categoryIdList?.length && {
         categories: {
           some: {
             id: {
