@@ -11,6 +11,7 @@ export interface QuestionDetailProps {
 const QuestionDetailPage = async ({ params }: QuestionDetailProps) => {
   const { id } = await params;
   const questionId = Number(id);
+
   if (isNaN(questionId)) {
     notFound();
   }

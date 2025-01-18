@@ -44,9 +44,9 @@ export async function GET(req: NextRequest) {
             name: true,
           },
         },
-        _count: {
+        likes: {
           select: {
-            likes: true,
+            userId: true,
           },
         },
       },

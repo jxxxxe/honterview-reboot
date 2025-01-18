@@ -9,10 +9,10 @@ import InputIcon from '@/shared/components/input-icon';
 import { MagnifyingGlassCircleIcon } from '@heroicons/react/24/solid';
 
 const QuestionInput = () => {
-  const { setQuestionsInput } = useQuestionList();
+  const { setSearchQuery } = useQuestionList();
   const { push } = useRouter();
   const onSelectItem = (value) => {
-    setQuestionsInput(value.name);
+    setSearchQuery(value.name);
     push(`/questions/${value.id}`);
   };
 
@@ -22,7 +22,7 @@ const QuestionInput = () => {
     const formData = new FormData(e.currentTarget);
 
     const searchWord = formData.get('question-list-input') as string;
-    setQuestionsInput(searchWord);
+    setSearchQuery(searchWord);
   };
 
   return (
