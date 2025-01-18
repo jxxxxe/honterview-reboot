@@ -3,7 +3,7 @@ import QuestionTitle from './question-title';
 import QuestionInterviewButton from './question-interview-button';
 import { v4 } from 'uuid';
 import { useEffect, useState } from 'react';
-import LikeButton from '@/containers/question-detail/components/question-detail-header/like-button';
+import LikeQuestionButton from '@/containers/question-list/components/question-list/question-item/like-question-button';
 import { apiFetch } from '@/shared/utils/fetch';
 import { cachedIsLikedQuestion } from '@/shared/services/question/like-question';
 
@@ -38,7 +38,7 @@ const QuestionItem = ({ id, content, categoryNames, likeCount, isLiked }) => {
             </div>
           ))}
         <div className="flex flex-1 items-center justify-end">
-          <LikeButton
+          <LikeQuestionButton
             questionId={id}
             initialIsLiked={isLiked}
             initialLikeCount={likeCount}

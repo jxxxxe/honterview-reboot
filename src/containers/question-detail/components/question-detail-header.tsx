@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Button from '@/shared/components/button';
 import Tag from '@/shared/components/tag';
 
-import LikeButton from './like-button';
+import LikeQuestionButton from '../../question-list/components/question-list/question-item/like-question-button';
 import { notFound } from 'next/navigation';
 import { getQuestion } from '@/shared/services/question/get-question';
 import { cachedIsLikedQuestion } from '@/shared/services/question/like-question';
@@ -27,7 +27,7 @@ const QuestionDetailHeader = async ({ questionId }: IProps) => {
   return (
     <div>
       <div className="flex items-center justify-end">
-        <LikeButton
+        <LikeQuestionButton
           questionId={questionId}
           initialIsLiked={isLiked}
           initialLikeCount={likeCount}

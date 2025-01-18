@@ -15,7 +15,7 @@ export interface IProps {
   onClick?: () => Promise<void>;
 }
 
-const LikeButton = ({
+const LikeQuestionButton = ({
   questionId,
   initialIsLiked,
   initialLikeCount,
@@ -64,4 +64,4 @@ const LikeButton = ({
   );
 };
 
-export default LikeButton;
+export default LikeQuestionButton;
