@@ -23,7 +23,7 @@ const Navigation = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden font-medium md:block">
+    <nav className="hidden font-medium sm:block">
       <ul className="flex items-center justify-center gap-10">
         {navigationItems.map(({ url, replace, scroll, title }) => {
           const enabledStyle = pathname === url ? 'text-primaries-primary' : '';

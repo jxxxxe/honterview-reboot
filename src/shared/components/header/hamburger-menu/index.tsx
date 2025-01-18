@@ -13,7 +13,7 @@ const HamburgerMenu = ({ children }: PropsWithChildren) => {
 
   return (
     <>
-      <div className="block text-[3rem] md:hidden">
+      <div className="block text-[3rem] sm:hidden">
         <button
           type="button"
           onClick={handleToggleActive}
