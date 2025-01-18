@@ -1,6 +1,5 @@
 import { QUESTION_COUNT_IN_PAGE } from '@/containers/question-list/constants';
 import prisma from '@/shared/libs/prisma';
-import { notFound } from 'next/navigation';
 import { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {
