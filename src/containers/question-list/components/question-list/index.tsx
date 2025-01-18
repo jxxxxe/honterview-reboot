@@ -1,6 +1,7 @@
 import { v4 as v4uuid } from 'uuid';
 import QuestionItem from './question-item';
-import { apiFetch } from '@/shared/utils/fetch';
+import { apiFetch } from '@/shared/utils/apiFetch';
+import { TEMPORARY_USER_ID } from '@/shared/constants/question';
 
 const QuestionList = async () => {
   const questionList = await apiFetch('api/questions');
@@ -15,7 +16,9 @@ const QuestionList = async () => {
     questionList.map(({ id, content, categories, likes }) => {
       const categoryNames = categories.map((category) => category.name);
       const likeCount = likes?.length;
-      const isLiked = Boolean(likes?.find((like) => like.userId == 1));
+      const isLiked = Boolean(
+        likes?.find((like) => like.userId == TEMPORARY_USER_ID),
+      );
       return (
         <QuestionItem
           key={v4uuid()}

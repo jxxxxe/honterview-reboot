@@ -4,7 +4,7 @@ import QuestionInterviewButton from './question-interview-button';
 import { v4 } from 'uuid';
 import { useEffect, useState } from 'react';
 import LikeQuestionButton from '@/containers/question-list/components/question-list/question-item/like-question-button';
-import { apiFetch } from '@/shared/utils/fetch';
+import { apiFetch } from '@/shared/utils/apiFetch';
 import { cachedIsLikedQuestion } from '@/shared/services/question/like-question';
 
 /**

@@ -10,8 +10,7 @@ import {
   getQuestionCount,
 } from '@/shared/services/question-list/get-question-list';
 import { CATEGORY_SELECTED_COUNT } from '@/shared/constants/question';
-import QuestionInput from '../components/question-input/question-input';
-import { apiFetch } from '@/shared/utils/fetch';
+import { apiFetch } from '@/shared/utils/apiFetch';
 
 const QuestionListContext = createContext<QuestionListContextTypes>({
   categoryList: [],

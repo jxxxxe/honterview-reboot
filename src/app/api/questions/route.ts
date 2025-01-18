@@ -13,7 +13,9 @@ export async function GET(req: NextRequest) {
   const pageNumber = Number(page);
 
   if (isNaN(pageNumber)) {
-    return notFound();
+    return new Response(null, {
+      status: 400,
+    });
   }
 
   try {
@@ -63,7 +65,6 @@ export async function GET(req: NextRequest) {
       take: QUESTION_COUNT_IN_PAGE,
       skip: pageNumber * QUESTION_COUNT_IN_PAGE,
     });
-
     return Response.json(questionList);
   } catch (e) {
     console.log(e);
