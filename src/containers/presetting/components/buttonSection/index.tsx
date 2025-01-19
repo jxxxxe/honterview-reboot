@@ -18,7 +18,7 @@ const PreSettingButtonSection = ({
   const { totalStep, currentStep, increaseStep, decreaseStep, isNextButtonOn } =
     useStepStore();
   const { firstQuestion, interviewType } = usePresettingDataStore();
-  const { createFirstQuestion, createNewInterview } = usePresetting();
+  const { createFirstQuestion } = usePresetting();
   const router = useRouter();
 
   const handlePrevButton = () => {
@@ -35,20 +35,14 @@ const PreSettingButtonSection = ({
       return;
     }
 
-    const questionId =
-      firstQuestion?.id === 'new'
-        ? await createFirstQuestion()
-        : firstQuestion?.id;
-    const interviewId = await createNewInterview(questionId);
-
-    if (!interviewId) {
-      return;
+    if (firstQuestion?.id === 'new') {
+      await createFirstQuestion();
     }
 
     const nextUrl =
       interviewType === 'RECORD'
-        ? `/interview/video/${interviewId}`
-        : `/interview/chat/${interviewId}`;
+        ? `/interview/practice/video`
+        : `/interview/practice/chat`;
 
     router.push(nextUrl);
   };

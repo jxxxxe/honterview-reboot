@@ -9,7 +9,8 @@ import { notify } from '@/shared/components/toast';
 import SectionAnimationWrapper from '../section-animation-wrapper';
 import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { dummyCategoryList } from '@/app/questions/dummydata';
+import getCategoryList from '@/shared/services/category/get-category-list';
+import LoadingIcon from '@/shared/components/loading-icon';
 
 export const MAX_TAG_COUNT = 3;
 
@@ -25,9 +26,11 @@ const TagSection = () => {
   const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-
-    setIsLoading(false);
+    const fetchData = async () => {
+      const categoryListData = await getCategoryList();
+      setCategoryList(categoryListData);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -38,11 +41,10 @@ const TagSection = () => {
       </div>
       <div className="h-[4rem] w-full">
         {isLoading ? (
-          // <Loading />
-          <></>
+          <LoadingIcon />
         ) : (
           <AutocompleteSearch
-            totalDatas={dummyCategoryList.data}
+            totalDatas={categoryList}
             selectedList={firstQuestionTagList}
             onSelectItem={(tag) => {
               if (firstQuestionTagList.length >= MAX_TAG_COUNT) {

@@ -1,74 +1,33 @@
 import { notify } from '@/shared/components/toast';
-// import {
-//   createInterviewByChat,
-//   createInterviewByVideo,
-//   createQuestion,
-// } from '@/services/presetting';
 
 import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
-import { dummyQuestionsList } from '@/app/questions/dummydata';
-import { dummyQuestions } from './components/scene-section/first-question-scene/dummydata';
+import createQuestion from '@/shared/services/question/create-question';
+import { TEMPORARY_USER_ID } from '@/shared/constants/question';
 
 const usePresetting = () => {
-  const {
-    firstQuestion,
-    firstQuestionTagList,
-    setFirstQuestion,
-    interviewType,
-    questionCount,
-    answerTime,
-  } = usePresettingDataStore();
+  const { firstQuestion, firstQuestionTagList } = usePresettingDataStore();
 
   const createFirstQuestion = async () => {
+    if (firstQuestionTagList.length < 1) {
+      notify('warning', '첫 질문의 태그를 올바르게 선택해주세요');
+      return;
+    }
+
     if (!firstQuestion) {
       notify('warning', '첫 질문을 올바르게 선택해주세요');
       return;
     }
 
-    return dummyQuestions[0].id;
-    // return createQuestion(
-    //   firstQuestion.name,
-    //   firstQuestionTagList.map(({ id }) => id as number),
-    // )
-    //   .then(({ data }) => {
-    //     setFirstQuestion({
-    //       id: data.id,
-    //       name: data.content,
-    //     });
-    //     return data.id;
-    //   })
-    //   .catch((e) => notify('error', e.message));
+    const createdQuestion = await createQuestion(
+      firstQuestion.name,
+      firstQuestionTagList,
+      TEMPORARY_USER_ID,
+    );
+
+    return createdQuestion.id;
   };
 
-  const createNewInterview = async (firstQuestionId: number) => {
-    if (!interviewType || !questionCount) {
-      notify('warning', '설정 값은 필수입니다');
-      return;
-    }
-
-    if (interviewType === 'TEXT') {
-      // return createInterviewByChat({
-      //   questionCount,
-      //   firstQuestionId,
-      // })
-      //   .then((res) => {
-      //     return res.data;
-      //   })
-      //   .catch((e) => notify('error', e.message));
-    }
-    return 1;
-    // return createInterviewByVideo({
-    //   questionCount,
-    //   answerTime,
-    //   firstQuestionId,
-    // })
-    //   .then(({ data }) => {
-    //     return data;
-    //   })
-    //   .catch((e) => notify('error', e.message));
-  };
-
-  return { createFirstQuestion, createNewInterview };
+  return { createFirstQuestion };
 };
 
 export default usePresetting;
