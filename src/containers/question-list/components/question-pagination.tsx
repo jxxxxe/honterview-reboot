@@ -10,7 +10,7 @@ const QuestionPageination = () => {
   const pageHandler = (page: number) => {
     setNowPage(page);
   };
-  console.log(totalSize);
+
   return (
     totalSize > 0 && (
       <Pagination

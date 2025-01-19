@@ -1,18 +1,34 @@
 'use client';
 
 import AutocompleteSearch from '@/shared/components/autocomplete-search';
-import { dummyQuestions } from '../../../presetting/components/scene-section/first-question-scene/dummydata';
 import { useQuestionList } from '../../contexts';
 import { useRouter } from 'next/navigation';
-import { FormEvent } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import InputIcon from '@/shared/components/input-icon';
 import { MagnifyingGlassCircleIcon } from '@heroicons/react/24/solid';
+import { getCachedQuestionList } from '@/shared/services/question-list/get-question-list';
+import { apiFetch } from '@/shared/utils/apiFetch';
 
 const QuestionInput = () => {
   const { setSearchQuery } = useQuestionList();
+  const [questionList, setQuestionList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const questionListData = await apiFetch('api/questions');
+      setQuestionList(
+        questionListData.map((q) => ({
+          id: q.id,
+          name: q.content,
+        })),
+      );
+    };
+    fetchData();
+  }, []);
+
   const { push } = useRouter();
+
   const onSelectItem = (value) => {
-    setSearchQuery(value.name);
     push(`/questions/${value.id}`);
   };
 
@@ -34,7 +50,7 @@ const QuestionInput = () => {
         <AutocompleteSearch
           className="w-[50rem]"
           placeholder="질문 내용을 검색하세요."
-          totalDatas={dummyQuestions}
+          totalDatas={questionList}
           onSelectItem={onSelectItem}
           name="question-list-input"
         />

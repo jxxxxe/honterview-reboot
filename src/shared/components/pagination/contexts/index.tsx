@@ -20,15 +20,19 @@ export const PaginationContext = createContext<IPaginationContext>({
 
 export const PaginationProvider = ({
   defaultPage,
-  limit,
-  total,
+  itemCountOnPage,
+  totalItemCount,
   onPageChange,
   children,
 }: IPaginationProviderProps) => {
   const [currentPage, setCurrentPage] = useState(defaultPage);
   const [isFirstNumbers, setIsFirstNumbers] = useState(true);
   const [isLastNumbers, setIsLastNumbers] = useState(true);
-  const totalPages = Math.ceil(total / limit);
+  const totalPages = Math.ceil(totalItemCount / itemCountOnPage);
+
+  useEffect(() => {
+    setCurrentPage(defaultPage);
+  }, [defaultPage]);
 
   useEffect(() => {
     if (currentPage <= 10) {

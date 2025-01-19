@@ -22,10 +22,10 @@ const QuestionFilter = () => {
 
   const filteredData = categoryList.filter(
     (tag) =>
-      tag.name.toLowerCase().includes(searchTagWord.toLowerCase()) &&
+      tag.toLowerCase().includes(searchTagWord.toLowerCase()) &&
       !selectedTagList
         .map((tag) => tag.toLowerCase())
-        .includes(tag.name.toLowerCase()),
+        .includes(tag.toLowerCase()),
   );
 
   return (

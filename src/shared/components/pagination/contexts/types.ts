@@ -13,8 +13,8 @@ export interface IPaginationContext {
 
 export interface IPaginationProviderProps {
   defaultPage: number;
-  limit: number;
-  total: number;
+  itemCountOnPage: number;
+  totalItemCount: number;
   onPageChange: (newPage: number) => void;
   children: ReactNode;
 }

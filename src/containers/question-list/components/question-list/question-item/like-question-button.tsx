@@ -35,7 +35,6 @@ const LikeQuestionButton = ({
   //     };
   //   },
   // );
-  console.log(questionId, isLikedData, likeCountData);
 
   const handleLikeClick = async () => {
     // startTransition(() => trigger(undefined));

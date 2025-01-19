@@ -28,8 +28,8 @@ const Pagination = ({
   return (
     <PaginationProvider
       defaultPage={defaultPage}
-      limit={limit}
-      total={total}
+      itemCountOnPage={limit}
+      totalItemCount={total}
       onPageChange={onPageChange}
     >
       <div className={style}>

@@ -1,13 +1,14 @@
+'use client';
 import { v4 as v4uuid } from 'uuid';
 import QuestionItem from './question-item';
 import { apiFetch } from '@/shared/utils/apiFetch';
 import { TEMPORARY_USER_ID } from '@/shared/constants/question';
+import { useQuestionList } from '../../contexts';
 
-const QuestionList = async () => {
-  const questionList = await apiFetch('api/questions');
+const QuestionList = () => {
+  // const questionList = await apiFetch('api/questions');
 
-  // const { questionList } = useQuestionList();
-  console.log('페이지 리렌더링');
+  const { questionList } = useQuestionList();
   return questionList.length === 0 ? (
     <p className="text-center text-extraLarge text-text-60">
       검색 결과가 없습니다.

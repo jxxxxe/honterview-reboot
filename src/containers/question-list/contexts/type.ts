@@ -2,7 +2,7 @@ import { ICategory } from '@/shared/types/category-list';
 import { IGetQuestions, IQuestion } from '@/shared/types/question-list';
 
 export default interface QuestionListContextTypes {
-  categoryList: ICategory[];
+  categoryList: string[];
   questionList: IGetQuestions[];
   orderBy: string;
   setOrderBy: (value: string) => void;

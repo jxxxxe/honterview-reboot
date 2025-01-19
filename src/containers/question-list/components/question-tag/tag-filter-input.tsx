@@ -6,10 +6,7 @@ export interface FilterInputProps {
   searchQuery: string;
   setSearchQuery: (searchQuery: string) => void;
   handleTagClick: (tag: string) => void;
-  filteredData: {
-    name: string;
-    id: number;
-  }[];
+  filteredData: string[];
 }
 
 const TagFilterInput = ({
@@ -27,7 +24,7 @@ const TagFilterInput = ({
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       const tagList = filteredData
-        .map(({ name }) =>
+        .map((name) =>
           filteredData.length === 1 ||
           (name.length === searchQuery.length &&
             name.toLowerCase().includes(searchQuery.toLowerCase()))

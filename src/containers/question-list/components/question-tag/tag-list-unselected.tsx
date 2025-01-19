@@ -1,11 +1,9 @@
 import { useQuestionList } from '@/containers/question-list/contexts';
 import Button, { ButtonType } from '@/shared/components/button';
+import { v4 } from 'uuid';
 
 export interface UnSelectedTagListProps {
-  filteredData: {
-    name: string;
-    id: number;
-  }[];
+  filteredData: string[];
   handleTagClick: (name: string) => void;
 }
 
@@ -22,12 +20,12 @@ const UnSelectedTagList = ({
       )}
       {filteredData.map((tag) => (
         <Button
-          key={tag.id}
+          key={v4()}
           className="h-[4rem] flex-none rounded-[1rem] border-text-40 px-2 py-2 text-black"
           styleType={ButtonType.Type2}
-          onClick={() => handleTagClick(tag.name)}
+          onClick={() => handleTagClick(tag)}
         >
-          {tag.name}
+          {tag}
         </Button>
       ))}
     </div>
