@@ -4,52 +4,68 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import AnswerItem from './answer-item';
-import getAnswerList from '@/shared/services/answer-list/get-answer-list';
+import {
+  getCachedAnswerList,
+  getAnswerCount,
+} from '@/shared/services/answer-list/get-answer-list';
 import Image from 'next/image';
 import { ArrowDownIcon } from '@heroicons/react/24/outline';
+import { ANSWER_COUNT_IN_PAGE } from '../../constants';
 
 export interface IProps {
   questionId: number;
 }
 
 const AnswerList = ({ questionId }: IProps) => {
-  const [answerData, setAnswerData] = useState([]);
-  const [page, setPage] = useState(0);
-  const firstAnswerList = answerData?.map(({ id, _count, content, user }) => ({
-    id,
-    content,
-    nickname: user.nickname,
-    likeCount: _count.likes,
-  }));
+  const [answerList, setAnswerList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+
+  useEffect(() => {
+    const fetchTotalPage = async () => {
+      const totalAnswerCount = await getAnswerCount(questionId);
+      setTotalPage(Math.ceil(totalAnswerCount / ANSWER_COUNT_IN_PAGE) - 1);
+    };
+    fetchTotalPage();
+  }, []);
 
   useEffect(() => {
     const fetchAnswerData = async () => {
-      const data = await getAnswerList(questionId, page);
-      setAnswerData(data);
+      const answerData = await getCachedAnswerList(questionId, page);
+
+      if (!answerData.length) {
+        return;
+      }
+
+      answerList.length
+        ? setAnswerList((prev) => [...prev, answerData])
+        : setAnswerList(answerData);
     };
     fetchAnswerData();
   }, [page]);
 
   return (
     <>
-      {answerData.length ? (
-        <div className="flex flex-col gap-8">
-          {firstAnswerList.map(({ nickname, content, id, likeCount }) => (
+      {answerList.length ? (
+        <div className="flex flex-col gap-5">
+          {answerList.map(({ nickname, content, id, likeCount, isLiked }) => (
             <AnswerItem
               key={uuidv4()}
               answerId={id}
               nickname={nickname}
               content={content}
               likeCount={likeCount}
-              isLiked={false}
+              isLiked={isLiked}
             />
           ))}
-          <button
-            onClick={() => setPage(page + 1)}
-            className="text-left"
-          >
-            <ArrowDownIcon />
-          </button>
+          {page < totalPage && (
+            <button
+              onClick={() => setPage(page + 1)}
+              className="flex w-full justify-center text-left *:size-10"
+            >
+              <ArrowDownIcon />
+            </button>
+          )}
         </div>
       ) : (
         <div className="flex flex-1 flex-col items-center justify-center gap-5 opacity-10">

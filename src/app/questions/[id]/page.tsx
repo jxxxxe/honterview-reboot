@@ -17,11 +17,11 @@ const QuestionDetailPage = async ({ params }: QuestionDetailProps) => {
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <QuestionDetailHeader questionId={questionId} />
       <AnswerList questionId={questionId} />
       {/* <TailQuestions questionId={questionIdAsNumber} /> */}
-    </>
+    </div>
   );
 };
 

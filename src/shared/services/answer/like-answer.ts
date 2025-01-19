@@ -1,4 +1,7 @@
+'use server';
+
 import prisma from '@/shared/libs/prisma';
+import { revalidateTag } from 'next/cache';
 
 export const likeAnswer = async (answerId: number, userId: number) => {
   await prisma.answerLike.create({
@@ -7,6 +10,9 @@ export const likeAnswer = async (answerId: number, userId: number) => {
       userId,
     },
   });
+
+  revalidateTag(`answer-list-${answerId}`);
+  return true;
 };
 
 export const unLikeAnswer = async (answerId: number, userId: number) => {
@@ -18,4 +24,8 @@ export const unLikeAnswer = async (answerId: number, userId: number) => {
       },
     },
   });
+
+  revalidateTag(`answer-list-${answerId}`);
+
+  return false;
 };
