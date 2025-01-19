@@ -5,17 +5,11 @@ import { NextRequest } from 'next/server';
 export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
   const categoryList = params.getAll('categories');
-  const searchWord = params.get('query') ?? '';
+  const searchWord = params.get('query');
   const order = params.get('order');
   const page = params.get('page');
 
-  const pageNumber = Number(page);
-
-  if (isNaN(pageNumber)) {
-    return new Response(null, {
-      status: 400,
-    });
-  }
+  const pageNumber = Number(page) ? Number(page) : 1;
 
   try {
     const questionList = await prisma.question.findMany({
@@ -26,7 +20,7 @@ export async function GET(req: NextRequest) {
             mode: 'insensitive',
           },
         }),
-        ...(categoryList?.length && {
+        ...(categoryList[0] && {
           categories: {
             some: {
               name: {
@@ -62,9 +56,10 @@ export async function GET(req: NextRequest) {
         },
       }),
       take: QUESTION_COUNT_IN_PAGE,
-      skip: pageNumber * QUESTION_COUNT_IN_PAGE,
+      skip: (pageNumber - 1) * QUESTION_COUNT_IN_PAGE,
     });
-    return Response.json(questionList);
+
+    return Response.json(questionList ?? {});
   } catch (e) {
     console.log(e);
   }
