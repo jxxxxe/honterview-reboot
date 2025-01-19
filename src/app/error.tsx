@@ -4,17 +4,10 @@ import Button, { ButtonType } from '@/shared/components/button';
 import Logo from '@/shared/components/logo';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
-import { useRouter } from 'next/navigation';
 
 const ErrorPage = () => {
-  const router = useRouter();
-
-  const handlePrevPage = () => {
-    router.back();
-  };
-
   const handleRefreshPage = () => {
-    router.refresh();
+    window.location.reload();
   };
 
   return (
