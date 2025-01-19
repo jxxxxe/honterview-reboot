@@ -10,7 +10,7 @@ import SectionAnimationWrapper from '../section-animation-wrapper';
 import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import getCategoryList from '@/shared/services/category/get-category-list';
-import LoadingIcon from '@/shared/components/loading-icon';
+import Input from '@/shared/components/input';
 
 export const MAX_TAG_COUNT = 3;
 
@@ -27,8 +27,10 @@ const TagSection = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const categoryListData = await getCategoryList();
       setCategoryList(categoryListData);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -41,7 +43,10 @@ const TagSection = () => {
       </div>
       <div className="h-[4rem] w-full">
         {isLoading ? (
-          <LoadingIcon />
+          <Input
+            placeholder="Loading.."
+            disabled={true}
+          />
         ) : (
           <AutocompleteSearch
             totalDatas={categoryList}

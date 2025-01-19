@@ -4,21 +4,19 @@ import { useEffect, useState } from 'react';
 
 import NotFound from '@/app/not-found';
 import DividerHorizontal from '@/shared/components/divider-horizontal';
-import { notify } from '@/shared/components/toast';
 
 import PreSettingButtonSection from './components/buttonSection';
 import PreSettingSceneSection from './components/scene-section';
 import StepSection from './components/step-section';
 import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
 import useStepStore from '../../shared/stores/presetting/useStepStore';
+import LoadingIcon from '@/shared/components/loading-icon';
 
 export interface PreSettingProps {
   firstQuestionId?: number;
 }
 
 const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isQuestionError, setIsQuestionError] = useState(false);
   const { setFirstQuestion, resetAllPresettingDatas } =
     usePresettingDataStore();
   const { setSettingStep, resetAllStepDatas } = useStepStore();
@@ -29,7 +27,6 @@ const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
   }, [resetAllStepDatas, resetAllPresettingDatas]);
 
   useEffect(() => {
-    setIsLoading(true);
     if (firstQuestionId) {
       setSettingStep();
       setFirstQuestion({
@@ -37,16 +34,7 @@ const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
         id: firstQuestionId,
       });
     }
-    setIsLoading(false);
   }, [firstQuestionId, setFirstQuestion, setSettingStep]);
-
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
-
-  if (isQuestionError) {
-    return <NotFound />;
-  }
 
   return (
     <div className="flex h-[70rem] max-h-full w-full flex-col items-center rounded-3xl bg-text-20 bg-opacity-20 p-[2rem] text-[1.6rem] shadow-[0_8px_30px_rgb(0,0,0,0.12)] tablet:h-[70rem] tablet:max-w-[80rem]">

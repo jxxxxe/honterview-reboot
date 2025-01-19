@@ -4,13 +4,12 @@ import AutocompleteSearch from '@/shared/components/autocomplete-search';
 import { AutocompleteDataType } from '@/shared/components/autocomplete-search/type';
 
 import Tag from '@/shared/components/tag';
-import { notify } from '@/shared/components/toast';
 
 import SectionAnimationWrapper from '../section-animation-wrapper';
 import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { dummyQuestionsList } from '@/app/questions/dummydata';
-import { dummyQuestions } from './dummydata';
+import { getCachedQuestionList } from '@/shared/services/question-list/get-question-list';
+import Input from '@/shared/components/input';
 
 export interface QuestionAPIType {
   id: number;
@@ -25,34 +24,38 @@ const QuestionSection = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const categoryList = firstQuestionTagList.map(({ name }) => name).join(',');
-    setQuestionList(
-      dummyQuestionsList.data.data.map((item) => ({
-        id: item.id,
-        name: item.content,
-      })),
-    );
-    // getQuestionListByCategoryList(categoryList)
-    //   .then(({ data }) => {
-    //     const questions = data.map((item: QuestionAPIType) => ({
-    //       id: item.id,
-    //       name: item.content,
-    //     }));
-    //     setQuestionList(questions);
-    //   })
-    //   .catch((e) => notify('error', e.message));
+
+    const fetchData = async () => {
+      const questionListData = await getCachedQuestionList(
+        '',
+        firstQuestionTagList,
+        'like',
+      );
+      setQuestionList(
+        questionListData.map((question) => ({
+          id: question.id,
+          name: question.content,
+        })),
+      );
+    };
+
+    fetchData();
+
     setIsLoading(false);
-  }, [firstQuestionTagList, firstQuestionTagList.length]);
+  }, [firstQuestionTagList]);
 
   return (
     <SectionAnimationWrapper className="flex w-full flex-col gap-[1rem]">
       <h2 className="text-large font-semibold">질문 선택</h2>
       <div className="h-[4rem] w-full">
         {isLoading ? (
-          <></>
+          <Input
+            placeholder="Loading.."
+            disabled={true}
+          />
         ) : (
           <AutocompleteSearch
-            totalDatas={dummyQuestions}
+            totalDatas={questionList}
             selectedList={firstQuestion ? [firstQuestion] : []}
             onSelectItem={(question) => {
               setFirstQuestion(question);
