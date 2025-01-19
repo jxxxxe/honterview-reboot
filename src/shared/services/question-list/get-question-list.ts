@@ -9,21 +9,22 @@ export const getCachedQuestionList = unstable_cache(
   async (
     searchWord = '',
     categoryList?: ICategory[],
-    likeOrder = false,
-    page = 0,
+    order = 'recent',
+    page = 1,
   ) => {
-    const categoryIdList = categoryList?.map((category) => category.id);
     const questionList = await prisma.question.findMany({
       where: {
-        content: {
-          contains: searchWord,
-          mode: 'insensitive',
-        },
-        ...(categoryIdList?.length && {
+        ...(searchWord && {
+          content: {
+            contains: searchWord,
+            mode: 'insensitive',
+          },
+        }),
+        ...(categoryList?.length && {
           categories: {
             some: {
-              id: {
-                in: categoryIdList,
+              name: {
+                in: categoryList.map((c) => c.name),
               },
             },
           },
@@ -34,16 +35,20 @@ export const getCachedQuestionList = unstable_cache(
         content: true,
         categories: {
           select: {
+            id: true,
             name: true,
           },
         },
-        _count: {
+        likes: {
           select: {
-            likes: true,
+            userId: true,
           },
         },
       },
-      ...(likeOrder && {
+      orderBy: {
+        created_at: 'desc',
+      },
+      ...(order === 'like' && {
         orderBy: {
           likes: {
             _count: 'desc',
@@ -51,7 +56,7 @@ export const getCachedQuestionList = unstable_cache(
         },
       }),
       take: QUESTION_COUNT_IN_PAGE,
-      skip: page * QUESTION_COUNT_IN_PAGE,
+      skip: (page - 1) * QUESTION_COUNT_IN_PAGE,
     });
 
     return questionList;
@@ -62,20 +67,19 @@ export const getCachedQuestionList = unstable_cache(
 
 export const getQuestionCount = async (
   searchWord = '',
-  categoryList?: ICategory[],
+  categoryList?: string[],
 ) => {
-  const categoryIdList = categoryList?.map((category) => category.id);
   const count = await prisma.question.count({
     where: {
       content: {
         contains: searchWord,
         mode: 'insensitive',
       },
-      ...(categoryIdList?.length && {
+      ...(categoryList?.length && {
         categories: {
           some: {
-            id: {
-              in: categoryIdList,
+            name: {
+              in: categoryList,
             },
           },
         },

@@ -23,7 +23,7 @@ export interface IGetQuestions {
   categories: {
     name: string;
   }[];
-  _count: {
-    likes: number;
-  };
+  likes: {
+    userId: number;
+  }[];
 }

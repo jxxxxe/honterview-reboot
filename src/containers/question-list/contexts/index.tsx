@@ -3,7 +3,6 @@
 import { notify } from '@/shared/components/toast';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import QuestionListContextTypes from './type';
-import { ICategory } from '@/shared/types/category-list';
 import getCategoryList from '@/shared/services/category/get-category-list';
 import {
   getCachedQuestionList,
@@ -31,73 +30,77 @@ const QuestionListContext = createContext<QuestionListContextTypes>({
 const QuestionListProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const [categoryList, setCategoryList] = useState<ICategory[]>([]);
+  const [categoryList, setCategoryList] = useState<string[]>([]);
   const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
 
   const [orderBy, setOrderBy] = useState('recent');
 
   const [questionList, setQuestionList] = useState([]);
 
-  const [nowPage, setNowPage] = useState(0);
+  const [nowPage, setNowPage] = useState(1);
   const [totalSize, setTotalSize] = useState(0);
 
-  //맨 처음 질문,카테고리,질문개수 패치
+  //카테고리 세팅
   useEffect(() => {
-    const fetchListData = async () => {
-      const questionListData = await apiFetch('api/questions');
-      setQuestionList(questionListData);
-
+    const fetchData = async () => {
       const categoryListData = await getCategoryList();
       setCategoryList(
-        categoryListData.sort((a: { name: string }, b: { name: string }) =>
-          a.name.localeCompare(b.name),
-        ),
+        categoryListData
+          .sort((a: { name: string }, b: { name: string }) =>
+            a.name.localeCompare(b.name),
+          )
+          .map((category) => category.name),
       );
-
-      const questionListCount = await getQuestionCount();
-      setTotalSize(questionListCount);
     };
-
-    fetchListData();
+    fetchData();
   }, []);
 
-  //검색어, 카테고리, 정렬 바뀔 때마다 페이지 0으로
+  //검색어, 카테고리, 정렬 바뀔 때마다 페이지 1로 & 전체개수 구함
   useEffect(() => {
-    setNowPage(0);
-  }, [searchQuery, selectedTagList, orderBy]);
-
-  //검색어, 카테고리, 정렬, 페이지 바뀔 때마다 페치
-  useEffect(() => {
-    setNowPage(nowPage);
+    setNowPage(1);
 
     const fetchData = async () => {
-      // const questionListData = await getCachedQuestionList(
-      //   questionsInput,
-      //   categoryList,
-      //   isLikeOrder,
-      // );
-
-      const categoryParams = categoryList.length
-        ? `?categories=${categoryList.join(',')}`
-        : '';
-      const orderByParams = orderBy ? `?order=${orderBy}` : '';
-      const searchQueryParams = searchQuery ? `?query=${searchQuery}` : '';
-      const pageParams = nowPage >= 0 ? `?page=${nowPage}` : '';
-
-      const questionListData = await apiFetch(
-        `api/questions${categoryParams}${orderByParams}${searchQueryParams}${pageParams}`,
-      );
-      setQuestionList(questionListData);
-
       const questionListCount = await getQuestionCount(
         searchQuery,
-        categoryList,
+        selectedTagList,
       );
       setTotalSize(questionListCount);
     };
 
     fetchData();
-  }, [nowPage]);
+  }, [searchQuery, selectedTagList, orderBy]);
+
+  //검색어, 카테고리, 정렬, 페이지 바뀔 때마다 페치
+  useEffect(() => {
+    const fetchData = async () => {
+      const before = new Date();
+
+      // const questionListData = await getCachedQuestionList(
+      //   searchQuery,
+      //   categoryList,
+      //   orderBy,
+      // );
+
+      const searchParams = new URLSearchParams({
+        categories: selectedTagList.join(','),
+        order: orderBy,
+        query: searchQuery,
+        page: nowPage + '',
+      });
+
+      const questionListData = await apiFetch(
+        `api/questions?${searchParams.toString()}`,
+      );
+      setQuestionList(questionListData);
+
+      const after = new Date();
+      console.log(
+        `걸린 시간 : ${(after.getTime() - before.getTime()) / 1000}초`,
+      );
+    };
+
+    fetchData();
+  }, [nowPage, searchQuery, selectedTagList, orderBy]);
 
   const handleTagClick = (tag: string) => {
     if (selectedTagList.length < CATEGORY_SELECTED_COUNT) {

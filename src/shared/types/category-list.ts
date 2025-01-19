@@ -1,5 +1,5 @@
 // getCategoryList
 export interface ICategory {
-  id: number;
+  id: number | 'new';
   name: string;
 }
