@@ -18,6 +18,7 @@ const QuestionFilter = () => {
     setSelectedTagList,
     handleTagClick,
     handleTagCancelClick,
+    isCategoryLoading,
   } = useQuestionList();
 
   const filteredData = categoryList.filter(
@@ -27,6 +28,10 @@ const QuestionFilter = () => {
         .map((tag) => tag.toLowerCase())
         .includes(tag.toLowerCase()),
   );
+
+  if (isCategoryLoading) {
+    return <div className="flex h-full flex-col items-center justify-center" />;
+  }
 
   return (
     <div>

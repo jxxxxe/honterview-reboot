@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 import { ArrowDownIcon } from '@heroicons/react/24/outline';
 import { ANSWER_COUNT_IN_PAGE } from '../../constants';
+import LoadingIcon from '@/shared/components/loading-icon';
 
 export interface IProps {
   questionId: number;
@@ -20,19 +21,12 @@ const AnswerList = ({ questionId }: IProps) => {
   const [answerList, setAnswerList] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-
-  useEffect(() => {
-    const fetchTotalPage = async () => {
-      const totalAnswerCount = await getAnswerCount(questionId);
-      setTotalPage(Math.ceil(totalAnswerCount / ANSWER_COUNT_IN_PAGE) - 1);
-    };
-    fetchTotalPage();
-  }, []);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchAnswerData = async () => {
+      setIsLoading(true);
       const answerData = await getCachedAnswerList(questionId, page);
-
       if (!answerData.length) {
         return;
       }
@@ -40,9 +34,30 @@ const AnswerList = ({ questionId }: IProps) => {
       answerList.length
         ? setAnswerList((prev) => [...prev, answerData])
         : setAnswerList(answerData);
+
+      setIsLoading(false);
     };
     fetchAnswerData();
   }, [page]);
+
+  useEffect(() => {
+    const fetchTotalPage = async () => {
+      setIsLoading(true);
+
+      const totalAnswerCount = await getAnswerCount(questionId);
+      setTotalPage(Math.ceil(totalAnswerCount / ANSWER_COUNT_IN_PAGE) - 1);
+      setIsLoading(false);
+    };
+    fetchTotalPage();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center text-large">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <>

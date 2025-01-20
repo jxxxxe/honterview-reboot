@@ -8,7 +8,16 @@ import { useQuestionList } from '../../contexts';
 const QuestionList = () => {
   // const questionList = await apiFetch('api/questions');
 
-  const { questionList } = useQuestionList();
+  const { questionList, isQuestionListLoading } = useQuestionList();
+
+  if (isQuestionListLoading) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center text-2xl">
+        Loading..
+      </div>
+    );
+  }
+
   return questionList.length === 0 ? (
     <p className="text-center text-extraLarge text-text-60">
       검색 결과가 없습니다.

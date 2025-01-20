@@ -5,11 +5,16 @@ import { useQuestionList } from '../contexts';
 import { QUESTION_COUNT_IN_PAGE } from '../constants';
 
 const QuestionPageination = () => {
-  const { totalSize, nowPage, setNowPage } = useQuestionList();
+  const { totalSize, nowPage, setNowPage, isQuestionListLoading } =
+    useQuestionList();
 
   const pageHandler = (page: number) => {
     setNowPage(page);
   };
+
+  if (isQuestionListLoading) {
+    return;
+  }
 
   return (
     totalSize > 0 && (

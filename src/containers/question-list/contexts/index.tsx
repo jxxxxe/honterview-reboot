@@ -25,10 +25,13 @@ const QuestionListContext = createContext<QuestionListContextTypes>({
   setSearchQuery: () => {},
   handleTagClick: () => {},
   handleTagCancelClick: () => {},
+  isCategoryLoading: true,
+  isQuestionListLoading: true,
 });
 
 const QuestionListProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isCategoryLoading, setIsCategoryLoading] = useState(true);
 
   const [categoryList, setCategoryList] = useState<string[]>([]);
   const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
@@ -36,6 +39,7 @@ const QuestionListProvider = ({ children }) => {
   const [orderBy, setOrderBy] = useState('recent');
 
   const [questionList, setQuestionList] = useState([]);
+  const [isQuestionListLoading, setIsQuestionListLoading] = useState(false);
 
   const [nowPage, setNowPage] = useState(1);
   const [totalSize, setTotalSize] = useState(0);
@@ -43,6 +47,7 @@ const QuestionListProvider = ({ children }) => {
   //카테고리 세팅
   useEffect(() => {
     const fetchData = async () => {
+      setIsCategoryLoading(true);
       const categoryListData = await getCategoryList();
       setCategoryList(
         categoryListData
@@ -51,6 +56,7 @@ const QuestionListProvider = ({ children }) => {
           )
           .map((category) => category.name),
       );
+      setIsCategoryLoading(false);
     };
     fetchData();
   }, []);
@@ -74,7 +80,7 @@ const QuestionListProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const before = new Date();
-
+      setIsQuestionListLoading(true);
       // const questionListData = await getCachedQuestionList(
       //   searchQuery,
       //   categoryList,
@@ -82,10 +88,13 @@ const QuestionListProvider = ({ children }) => {
       // );
 
       const searchParams = new URLSearchParams({
-        categories: selectedTagList.join(','),
         order: orderBy,
         query: searchQuery,
         page: nowPage + '',
+      });
+
+      selectedTagList.forEach((tag) => {
+        searchParams.append('categories', tag);
       });
 
       const questionListData = await apiFetch(
@@ -97,6 +106,7 @@ const QuestionListProvider = ({ children }) => {
       console.log(
         `걸린 시간 : ${(after.getTime() - before.getTime()) / 1000}초`,
       );
+      setIsQuestionListLoading(false);
     };
 
     fetchData();
@@ -120,6 +130,7 @@ const QuestionListProvider = ({ children }) => {
       setSearchQuery,
 
       categoryList,
+      isCategoryLoading,
       selectedTagList,
       setSelectedTagList,
 
@@ -127,6 +138,7 @@ const QuestionListProvider = ({ children }) => {
       setOrderBy,
 
       questionList,
+      isQuestionListLoading,
 
       nowPage,
       setNowPage,
@@ -139,11 +151,13 @@ const QuestionListProvider = ({ children }) => {
       searchQuery,
       setSearchQuery,
       categoryList,
+      isCategoryLoading,
       selectedTagList,
       setSelectedTagList,
       orderBy,
       setOrderBy,
       questionList,
+      isQuestionListLoading,
       nowPage,
       setNowPage,
       totalSize,

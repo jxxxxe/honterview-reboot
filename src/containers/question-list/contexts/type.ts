@@ -15,4 +15,6 @@ export default interface QuestionListContextTypes {
   setSearchQuery: (value: string) => void;
   handleTagClick: (value: string) => void;
   handleTagCancelClick: (value: string) => void;
+  isCategoryLoading: boolean;
+  isQuestionListLoading: boolean;
 }
