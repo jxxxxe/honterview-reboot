@@ -1,4 +1,4 @@
-import PreSetting from '@/containers/presetting';
+import PreSetting from '@/containers/interview-presetting';
 
 export interface PreSettingPageProps {
   params: Promise<{
