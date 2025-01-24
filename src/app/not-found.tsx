@@ -3,9 +3,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import Button, { ButtonType } from '@/shared/components/button';
 import Logo from '@/shared/components/logo';
-import { XCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { XCircleIcon } from '@heroicons/react/24/solid';
 
 const NotFound = () => {
   const router = useRouter();
@@ -28,20 +27,17 @@ const NotFound = () => {
         존재하지 않는 페이지입니다
       </h1>
       <div className="flex items-center gap-5">
-        <Button
-          styleType={ButtonType.Type3}
+        <button
           onClick={handlePrevPage}
-          className="h-auto w-auto px-[1rem] py-[0.8rem] text-small text-white md:text-medium"
+          className="navigation-button px-[3rem]"
         >
           이전 페이지
-        </Button>
-        <Link href="/">
-          <Button
-            styleType={ButtonType.Type3}
-            className="h-auto w-auto px-[1rem] py-[0.8rem] text-small text-white md:text-medium"
-          >
-            메인 페이지
-          </Button>
+        </button>
+        <Link
+          className="navigation-button px-[3rem]"
+          href="/"
+        >
+          메인 페이지
         </Link>
       </div>
     </div>

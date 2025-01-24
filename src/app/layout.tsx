@@ -1,10 +1,7 @@
 import '@/styles/globals.css';
 
-import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ToastContainer } from 'react-toastify';
-
-import Header from '@/shared/components/header';
 
 const font = localFont({
   src: '../styles/fonts/PretendardVariable.woff2',
@@ -19,7 +16,6 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     >
       <body className="h-screen">
         <ToastContainer />
-        <Header />
         <main className="wrap">{children}</main>
       </body>
     </html>

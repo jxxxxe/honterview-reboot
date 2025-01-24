@@ -7,6 +7,12 @@
   src: url('../styles/fonts/GoldenPlains.ttf');
 }
 
+@layer components {
+  .navigation-button {
+    @apply rounded-xl bg-black p-[1.5rem] text-[1.5rem] font-semibold text-white transition-transform hover:scale-110;
+  }
+}
+
 html {
   font-size: 62.5%;
 }

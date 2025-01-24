@@ -1,6 +1,5 @@
 'use client';
 
-import Button, { ButtonType } from '@/shared/components/button';
 import Logo from '@/shared/components/logo';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
@@ -22,16 +21,13 @@ const ErrorPage = () => {
       <h1 className="text-center text-[2.5rem] font-semibold">
         에러가 발생했습니다
       </h1>
-      <div className="flex items-center gap-5">
-        <Button
-          styleType={ButtonType.Type3}
-          onClick={handleRefreshPage}
-          className="flex h-auto w-auto gap-3 px-[1rem] py-[0.8rem] text-small text-white md:text-medium"
-        >
-          새로고침
-          <ArrowPathIcon className="size-8" />
-        </Button>
-      </div>
+      <button
+        onClick={handleRefreshPage}
+        className="navigation-button flex gap-3 transition-none hover:scale-100"
+      >
+        새로고침
+        <ArrowPathIcon className="size-8" />
+      </button>
     </div>
   );
 };
