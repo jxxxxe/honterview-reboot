@@ -1,8 +1,8 @@
 import { notify } from '@/shared/components/toast';
 
-import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
 import createQuestion from '@/shared/services/question/create-question';
 import { TEMPORARY_USER_ID } from '@/shared/constants/question';
+import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
 
 const usePresetting = () => {
   const { firstQuestion, firstQuestionTagList } = usePresettingDataStore();

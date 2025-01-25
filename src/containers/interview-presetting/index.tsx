@@ -5,12 +5,11 @@ import { useEffect, useState } from 'react';
 import NotFound from '@/app/not-found';
 import DividerHorizontal from '@/shared/components/divider-horizontal';
 
-import PreSettingButtonSection from './components/buttonSection';
+import PreSettingButtonSection from './components/button-section';
 import PreSettingSceneSection from './components/scene-section';
 import StepSection from './components/step-section';
 import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
 import useStepStore from '../../shared/stores/presetting/useStepStore';
-import LoadingIcon from '@/shared/components/loading-icon';
 
 export interface PreSettingProps {
   firstQuestionId?: number;

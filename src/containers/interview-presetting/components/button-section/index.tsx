@@ -6,7 +6,7 @@ import Button, { ButtonType } from '@/shared/components/button';
 
 import usePresettingDataStore from '../../../../shared/stores/presetting/usePresettingDataStore';
 import useStepStore from '../../../../shared/stores/presetting/useStepStore';
-import usePresetting from '../../usePresetting';
+import usePresetting from '../../hooks/usePresetting';
 
 export interface PreSettingButtonSectionProps {
   fromQuestionPage?: boolean;
