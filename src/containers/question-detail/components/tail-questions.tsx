@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { v4 as uuidv4 } from 'uuid';
 
-import { dummyQuestionsList } from '@/app/questions/dummydata';
+import { dummyQuestionsList } from '@/app/(header)/questions/dummydata';
 
 export interface IProps {
   questionId: number;

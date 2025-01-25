@@ -36,7 +36,7 @@ const MainOutroSection = () => {
               replace={item.replace}
               scroll={item.scroll}
               key={item.title}
-              className="rounded-xl bg-black p-[1.5rem] text-[1.5rem] font-semibold text-white transition-transform hover:scale-110 tablet:p-[2rem] tablet:text-[2rem]"
+              className="navigation-button tablet:p-[2rem] tablet:text-[2rem]"
             >
               {item.title}
             </Link>
