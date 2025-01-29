@@ -19,18 +19,20 @@ export async function POST(req: NextRequest) {
       { role: 'assistant', content: prevQuestion },
       {
         role: 'user',
-        content: `${prevResponse} 제 답에 대해 꼬리 질문을 한줄로 간략하게 해주세요.`,
+        content: `${prevResponse}  꼬리 질문을 한줄로 간략하게 만들어 주세요.`,
       },
     );
 
     const response = await openai.chat.completions.create({
       model: 'sonar',
       messages,
-      max_tokens: 100,
+      max_tokens: 150,
     });
 
     return NextResponse.json({
-      reply: response.choices[0]?.message?.content || '응답이 없습니다.',
+      reply:
+        response.choices[0]?.message?.content?.replaceAll('*', '') ||
+        '응답이 없습니다.',
     });
   } catch (error) {
     console.log('Error: ', error);
