@@ -5,7 +5,7 @@ import { PresettingDataState } from './type';
 const usePresettingDataStore = create<PresettingDataState>((set) => ({
   firstQuestionTagList: [],
   firstQuestion: undefined,
-  questionCount: 0,
+  questionCount: 1,
   interviewType: undefined,
   answerTime: { minute: 0, second: 0 },
   addFirstQuestionTag: (tag) => {
