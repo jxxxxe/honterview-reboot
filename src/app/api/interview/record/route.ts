@@ -1,44 +1,49 @@
-import { put } from '@vercel/blob';
-import { error } from 'console';
+import { notify } from '@/shared/components/toast';
+import prisma from '@/shared/libs/prisma';
+import { apiFetch } from '@/shared/utils/apiFetch';
 import { NextRequest, NextResponse } from 'next/server';
 
-interface SaveChatInterviewProps {
-  userId: number;
-  questionList: string[];
-  answerList: string[];
-  tagList: string[];
-  timerList: number[];
-  videoUrl: string;
-}
-
 export async function POST(req: NextRequest) {
-  const formData = await req.formData();
-  const recordFile = formData.get('video') as Blob;
+  const { userId, firstQuestionId, questionList, answerList, timerList } =
+    await req.json();
 
-  if (!recordFile) {
-    return NextResponse.json(
-      {
-        error: '녹화된 비디오 파일이 없습니다.',
-      },
-      {
-        status: 400,
-      },
-    );
-  }
   try {
-    //vercel Blob에 업로드
-    const { url } = await put('honterview/interview/record', recordFile, {
-      access: 'public',
-      contentType: 'video/mp4',
+    const interview = await prisma.interview.create({
+      data: {
+        interview_type: 'RECORD',
+        userId,
+        firstQuestionId,
+        questions: questionList,
+        answers: answerList,
+        timers: timerList,
+      },
     });
 
-    return NextResponse.json({
-      success: true,
-      videoUrl: url,
+    await prisma.answer.create({
+      data: {
+        questionId: firstQuestionId,
+        content: answerList[0],
+        userId,
+      },
     });
+
+    const data = await apiFetch(`api/interview/record/${interview.id}`, {
+      method: 'POST',
+    });
+
+    const videoInterview = await prisma.interview.update({
+      where: {
+        id: interview.id,
+      },
+      data: {
+        videoUrl: data.videoUrl,
+      },
+    });
+
+    return NextResponse.json(videoInterview.id);
   } catch (e) {
+    notify('error', e.message);
     return NextResponse.json({
-      success: false,
       error: e.message,
     });
   }
