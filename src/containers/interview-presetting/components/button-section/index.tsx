@@ -41,7 +41,7 @@ const PreSettingButtonSection = ({
 
     const nextUrl =
       interviewType === 'RECORD'
-        ? `/interview/practice/video`
+        ? `/interview/practice/record`
         : `/interview/practice/chat`;
 
     router.push(nextUrl);
