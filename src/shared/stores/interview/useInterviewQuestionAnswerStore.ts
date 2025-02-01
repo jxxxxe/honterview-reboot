@@ -6,7 +6,8 @@ const useInterviewQuestionAnswerStore =
     questionList: [],
     answerList: [],
     answerTimeList: [],
-    createdQuestionCount: 1,
+    createdQuestionCount: 0,
+    videoChuncks: [],
     addQuestion: (question) => {
       set(({ questionList, createdQuestionCount }) => {
         questionList.push(question);
@@ -14,6 +15,16 @@ const useInterviewQuestionAnswerStore =
           currentQuestion: question,
           questionList,
           createdQuestionCount: createdQuestionCount + 1,
+        };
+      });
+    },
+    changeQuestion: (question) => {
+      set(({ questionList }) => {
+        questionList[questionList.length ? 0 : questionList.length - 1] =
+          question;
+        return {
+          questionList,
+          currentQuestion: question,
         };
       });
     },
@@ -28,6 +39,15 @@ const useInterviewQuestionAnswerStore =
         answerTimeList.push(time);
 
         return { answerTimeList };
+      });
+    },
+    setVideoChuncks: (chunk: Blob) => {
+      set(({ videoChuncks }) => {
+        videoChuncks.push(chunk);
+
+        return {
+          videoChuncks,
+        };
       });
     },
     resetInterviewData: () => {
@@ -48,8 +68,11 @@ interface useInterviewQuestionAnswerStoreType {
   answerList: string[];
   answerTimeList: number[];
   createdQuestionCount: number;
+  videoChuncks: Blob[];
   addQuestion: (question: string) => void;
+  changeQuestion: (question: string) => void;
   addAnswer: (answer: string) => void;
   addAnswerTime: (time: number) => void;
+  setVideoChuncks: (chunk: Blob) => void;
   resetInterviewData: () => void;
 }

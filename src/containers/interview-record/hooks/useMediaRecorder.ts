@@ -1,5 +1,6 @@
 'use client';
 
+import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
 import { apiFetch } from '@/shared/utils/apiFetch';
 import { useEffect, useRef, useState } from 'react';
 
@@ -8,8 +9,8 @@ const useMediaRecorder = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
     null,
   );
-  const [recordedChunks, setRecordedChunks] = useState<Blob[]>(); //녹화된 데이터 저장
   const [isRecording, setIsRecording] = useState(false);
+  const { setVideoChuncks } = useInterviewQuestionAnswerStore(); //녹화된 데이터 저장
 
   const startRecording = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -21,17 +22,17 @@ const useMediaRecorder = () => {
       videoRef.current.srcObject = stream;
     }
 
-    const recoder = new MediaRecorder(stream); // 녹화 레코더
+    const recorder = new MediaRecorder(stream); // 녹화 레코더
 
-    recoder.ondataavailable = (event) => {
+    recorder.ondataavailable = (event) => {
       if (event.data.size > 0) {
-        setRecordedChunks((prev) => [...prev, event.data]);
+        setVideoChuncks(event.data);
       }
     };
 
-    recoder.start();
+    recorder.start(1000);
 
-    setMediaRecorder(recoder);
+    setMediaRecorder(recorder);
     setIsRecording(true);
   };
 
@@ -46,20 +47,6 @@ const useMediaRecorder = () => {
     });
 
     setIsRecording(false);
-  };
-
-  const uploadVideo = async () => {
-    const blob = new Blob(recordedChunks, { type: 'video/webm' });
-
-    const formData = new FormData();
-    formData.append('video', blob);
-
-    const data = await apiFetch('api/interview/record', {
-      method: 'POST',
-      body: formData,
-    });
-
-    return data.videoUrl;
   };
 
   useEffect(() => {
@@ -77,9 +64,6 @@ const useMediaRecorder = () => {
   return {
     videoRef,
     isRecording,
-    startRecording,
-    stopRecording,
-    uploadVideo,
   };
 };
 
