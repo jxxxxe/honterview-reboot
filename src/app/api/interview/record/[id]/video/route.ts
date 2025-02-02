@@ -1,25 +1,27 @@
+import { notify } from '@/shared/components/toast';
+import prisma from '@/shared/libs/prisma';
 import { put } from '@vercel/blob';
 import { error } from 'console';
 import { NextRequest, NextResponse } from 'next/server';
 
-interface SaveChatInterviewProps {
-  userId: number;
-  questionList: string[];
-  answerList: string[];
-  tagList: string[];
-  timerList: number[];
-  videoUrl: string;
-}
+export const config = {
+  api: {
+    bodyParser: false, // 필수 설정
+    sizeLimit: '1000mb',
+  },
+};
 
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const formData = await req.formData();
-  const recordFile = formData.get('video') as Blob;
+  const videoFormData = await req.formData();
+  const recordFile = videoFormData.get('video') as Blob;
   const { id: interviewId } = await params;
 
   if (!recordFile) {
+    console.error('error', '녹화된 비디오 파일이 없습니다.');
+
     return NextResponse.json(
       {
         error: '녹화된 비디오 파일이 없습니다.',
@@ -29,10 +31,11 @@ export async function POST(
       },
     );
   }
+
   try {
     //vercel Blob에 업로드
     const { url } = await put(
-      `honterview/interview/record/${interviewId}`,
+      `interview/record/video/${interviewId}`,
       recordFile,
       {
         access: 'public',
@@ -40,11 +43,23 @@ export async function POST(
       },
     );
 
+    await prisma.video.create({
+      data: {
+        url,
+        Interview: {
+          connect: {
+            id: Number(interviewId),
+          },
+        },
+      },
+    });
+
     return NextResponse.json({
       success: true,
       videoUrl: url,
     });
   } catch (e) {
+    console.error('error', e.message);
     return NextResponse.json({
       success: false,
       error: e.message,
