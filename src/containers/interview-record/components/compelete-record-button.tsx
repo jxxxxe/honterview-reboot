@@ -1,42 +1,49 @@
 'use client';
 
-import Button, { ButtonType } from '@/shared/components/button';
 import { TEMPORARY_USER_ID } from '@/shared/constants/question';
+import { completeInterview } from '@/shared/services/interview/complete-interview';
 import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
 import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
-import { apiFetch } from '@/shared/utils/apiFetch';
+import { createVideoFormData } from '@/shared/utils/video';
+import { PowerIcon } from '@heroicons/react/24/outline';
 import { redirect } from 'next/navigation';
 
 const CompleteRecordButton = () => {
   // const {firstQuestion} = usePresettingDataStore()
   const firstQuestion = { id: 1 };
-  const { answerList, questionList, answerTimeList, resetInterviewData } =
-    useInterviewQuestionAnswerStore();
+  const {
+    answerList,
+    questionList,
+    answerTimeList,
+    resetInterviewData,
+    videoChuncks,
+  } = useInterviewQuestionAnswerStore();
 
   const finishInterview = async () => {
-    const interviewId = await apiFetch('api/interview/record', {
-      method: 'POST',
-      body: JSON.stringify({
-        questionList,
-        answerList,
-        userId: TEMPORARY_USER_ID,
-        firstQuestionId: firstQuestion.id,
-        timerList: answerTimeList,
-      }),
-    });
+    const videoFormData = createVideoFormData(videoChuncks);
 
-    resetInterviewData();
-
-    redirect(`/interview/result/${interviewId}`);
+    await completeInterview(
+      questionList,
+      answerList,
+      TEMPORARY_USER_ID,
+      firstQuestion.id,
+      answerTimeList,
+      videoFormData,
+      (interviewId) => {
+        resetInterviewData();
+        redirect(`/interview/result/${interviewId}`);
+      },
+    );
   };
 
   return (
-    <Button
-      styleType={ButtonType.Type2}
+    <button
+      className="hover:text-primaries-primary"
       onClick={finishInterview}
     >
+      <PowerIcon />
       면접 종료
-    </Button>
+    </button>
   );
 };
 
