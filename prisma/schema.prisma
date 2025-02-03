@@ -97,6 +97,9 @@ model Interview {
   questions String[]
   answers   String[]
 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId          Int
   firstQuestion   Question @relation(fields: [firstQuestionId], references: [id])
@@ -107,7 +110,13 @@ model Interview {
 }
 
 model Video {
-  id        Int        @id @default(autoincrement())
-  url       String     @unique
+  id          Int    @id @default(autoincrement())
+  pathname    String @unique
+  url         String @unique
+  downloadUrl String @unique
+
   Interview Interview?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
