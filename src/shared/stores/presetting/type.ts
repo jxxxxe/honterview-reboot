@@ -1,4 +1,5 @@
 import { AutocompleteDataType } from '@/shared/components/autocomplete-search/type';
+import { IInterviewType } from '@/shared/types/interview';
 
 export interface StepState {
   totalStep: number;
@@ -18,7 +19,7 @@ export interface PresettingDataState {
   firstQuestionTagList: AutocompleteDataType[];
   firstQuestion?: AutocompleteDataType;
   questionCount: number;
-  interviewType?: 'RECORD' | 'TEXT';
+  interviewType?: IInterviewType;
   answerTime: { minute: number; second: number };
   addFirstQuestionTag: (tag: AutocompleteDataType) => void;
   removeFirstQuestionTag: (tag: AutocompleteDataType) => void;
