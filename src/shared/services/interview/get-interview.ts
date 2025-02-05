@@ -5,6 +5,9 @@ const getInterview = async (id: number) => {
     where: {
       id,
     },
+    include: {
+      video: true,
+    },
   });
 
   return interview;
