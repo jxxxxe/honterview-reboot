@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
       skip: (pageNumber - 1) * QUESTION_COUNT_IN_PAGE,
     });
 
-    return Response.json(questionList ?? {});
+    return questionList && Response.json(questionList);
   } catch (e) {
     console.log(e);
   }
