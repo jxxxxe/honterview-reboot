@@ -34,7 +34,7 @@ export async function POST(
 
   try {
     //vercel Blob에 업로드
-    const { url } = await put(
+    const { pathname, url, downloadUrl } = await put(
       `interview/record/video/${interviewId}`,
       recordFile,
       {
@@ -45,7 +45,9 @@ export async function POST(
 
     await prisma.video.create({
       data: {
+        pathname,
         url,
+        downloadUrl,
         Interview: {
           connect: {
             id: Number(interviewId),
