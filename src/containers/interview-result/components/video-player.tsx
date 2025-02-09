@@ -4,7 +4,6 @@ export interface IProps {
 
 const VideoPlayer = ({ src }: IProps) => {
   return (
-    // eslint-disable-next-line
     <video
       width="100%"
       height="100%"
