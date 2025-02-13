@@ -61,6 +61,8 @@ export async function GET(req: NextRequest) {
 
     return questionList && Response.json(questionList);
   } catch (e) {
+    console.error('ERROR : ', e.message);
+
     console.log(e);
   }
 }

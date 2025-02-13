@@ -1,7 +1,5 @@
-import { notify } from '@/shared/components/toast';
 import prisma from '@/shared/libs/prisma';
 import { put } from '@vercel/blob';
-import { error } from 'console';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const config = {
@@ -61,7 +59,8 @@ export async function POST(
       videoUrl: url,
     });
   } catch (e) {
-    console.error('error', e.message);
+    console.error('ERROR : ', e.message);
+
     return NextResponse.json({
       success: false,
       error: e.message,

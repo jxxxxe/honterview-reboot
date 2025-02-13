@@ -1,4 +1,3 @@
-import { notify } from '@/shared/components/toast';
 import openai from '@/shared/libs/openai';
 import { NextRequest, NextResponse } from 'next/server';
 import { ChatCompletionMessageParam } from 'openai/resources';

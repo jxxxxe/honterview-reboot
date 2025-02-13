@@ -1,4 +1,3 @@
-import { notify } from '@/shared/components/toast';
 import openai from '@/shared/libs/openai';
 import { NextRequest } from 'next/server';
 import { ChatCompletionMessageParam } from 'openai/resources';
@@ -31,7 +30,8 @@ export async function POST(req: NextRequest) {
       reply: response?.choices[0]?.message?.content?.replaceAll('*', ''),
     });
   } catch (e) {
-    notify('error', `Error: ${e.message}`);
+    console.error('ERROR : ', e.message);
+
     return Response.json({
       error: e.message,
     });

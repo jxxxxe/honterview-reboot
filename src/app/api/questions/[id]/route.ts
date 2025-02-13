@@ -15,24 +15,27 @@ export async function GET(
       status: 400,
     });
   }
-
-  const isLikedData = await prisma.questionLike.findUnique({
-    where: {
-      userId_questionId: {
-        questionId: idNumber,
-        userId: TEMPORARY_USER_ID,
+  try {
+    const isLikedData = await prisma.questionLike.findUnique({
+      where: {
+        userId_questionId: {
+          questionId: idNumber,
+          userId: TEMPORARY_USER_ID,
+        },
       },
-    },
-  });
+    });
 
-  const questionLikeCount = await prisma.questionLike.count({
-    where: {
-      questionId: idNumber,
-    },
-  });
+    const questionLikeCount = await prisma.questionLike.count({
+      where: {
+        questionId: idNumber,
+      },
+    });
 
-  return Response.json({
-    isLiked: Boolean(isLikedData),
-    likeCount: questionLikeCount,
-  });
+    return Response.json({
+      isLiked: Boolean(isLikedData),
+      likeCount: questionLikeCount,
+    });
+  } catch (e) {
+    console.error('ERROR : ', e.message);
+  }
 }
