@@ -18,12 +18,14 @@ export interface IPagination {
 }
 
 export interface IGetQuestions {
-  id: number;
   content: string;
+  id: number;
   categories: {
     name: string;
   }[];
-  likes: {
-    userId: number;
-  }[];
+  _count: {
+    likes: number;
+  };
 }
+
+export type QuestionOrderType = 'like' | 'latest';
