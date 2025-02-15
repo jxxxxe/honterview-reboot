@@ -18,7 +18,7 @@ const InterviewSettingScene = () => {
     const { minute, second } = answerTime;
     if (
       questionCount &&
-      (interviewType === 'TEXT' || !(minute === 0 && second === 0))
+      (interviewType === 'CHAT' || !(minute === 0 && second === 0))
     ) {
       setNextButtonOn();
       return;

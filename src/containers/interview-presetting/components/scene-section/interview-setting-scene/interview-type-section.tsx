@@ -50,7 +50,7 @@ const InterviewTypeSection = ({
         </Button>
         <Button
           styleType={
-            interviewType === 'TEXT' ? ButtonType.Type1 : ButtonType.Type2
+            interviewType === 'CHAT' ? ButtonType.Type1 : ButtonType.Type2
           }
           onClick={handleChatButton}
           className="h-[4rem] w-[9.5rem] px-[0rem]"

@@ -23,7 +23,7 @@ const StepSection = () => {
   const { interviewType } = usePresettingDataStore();
 
   useEffect(() => {
-    if (interviewType === 'TEXT') {
+    if (interviewType === 'CHAT') {
       setChattingStep();
       return;
     }
