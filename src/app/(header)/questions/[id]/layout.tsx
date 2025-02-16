@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { QuestionDetailProps } from './page';
-import { getQuestion } from '@/shared/services/question/get-question';
+import { getQuestionById } from '@/shared/services/question/get-question';
 import { notFound } from 'next/navigation';
 
 export const generateMetadata = async ({
@@ -12,7 +12,7 @@ export const generateMetadata = async ({
     notFound();
   }
 
-  const question = await getQuestion(questionId);
+  const question = await getQuestionById(questionId);
 
   if (!question) {
     notFound();

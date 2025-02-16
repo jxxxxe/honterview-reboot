@@ -1,6 +1,6 @@
 import prisma from '@/shared/libs/prisma';
 
-export const getQuestion = async (questionId: number) => {
+export const getQuestionById = async (questionId: number) => {
   const question = await prisma.question.findUnique({
     where: {
       id: questionId,

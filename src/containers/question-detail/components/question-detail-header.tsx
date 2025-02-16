@@ -6,7 +6,7 @@ import Tag from '@/shared/components/tag';
 
 import LikeQuestionButton from '../../question-list/components/question-list/question-item/like-question-button';
 import { notFound } from 'next/navigation';
-import { getQuestion } from '@/shared/services/question/get-question';
+import { getQuestionById } from '@/shared/services/question/get-question';
 import { cachedIsLikedQuestion } from '@/shared/services/question/like-question';
 
 export interface IProps {
@@ -14,7 +14,7 @@ export interface IProps {
 }
 
 const QuestionDetailHeader = async ({ questionId }: IProps) => {
-  const question = await getQuestion(questionId);
+  const question = await getQuestionById(questionId);
 
   if (!question) {
     notFound();
