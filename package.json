@@ -28,6 +28,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@types/dom-speech-recognition": "^0.0.4",
     "@types/node": "22.10.5",
     "@types/react": "19.0.2",
     "postcss": "^8.4.49",
