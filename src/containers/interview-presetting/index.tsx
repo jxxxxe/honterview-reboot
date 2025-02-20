@@ -16,9 +16,8 @@ export interface PreSettingProps {
 }
 
 const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
-  const { setFirstQuestion, resetAllPresettingDatas } =
-    usePresettingDataStore();
-  const { setSettingStep, resetAllStepDatas } = useStepStore();
+  const { setFirstQuestion } = usePresettingDataStore();
+  const { setSettingStep } = useStepStore();
 
   useEffect(() => {
     if (!firstQuestionId) {
@@ -30,11 +29,6 @@ const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
       name: '',
       id: firstQuestionId,
     });
-
-    return () => {
-      resetAllStepDatas();
-      resetAllPresettingDatas();
-    };
   }, [firstQuestionId, setFirstQuestion, setSettingStep]);
 
   return (

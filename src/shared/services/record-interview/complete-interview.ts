@@ -3,6 +3,7 @@
 import { TEMPORARY_USER_ID } from '@/shared/constants/question';
 import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
 import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
+import useStepStore from '@/shared/stores/presetting/useStepStore';
 import { apiFetch } from '@/shared/utils/apiFetch';
 import { createVideoFormData } from '@/shared/utils/video';
 import { redirect } from 'next/navigation';
@@ -18,7 +19,8 @@ export const completeInterview = () => {
     videoChuncks,
   } = useInterviewQuestionAnswerStore();
 
-  const { firstQuestion } = usePresettingDataStore();
+  const { resetAllStepDatas } = useStepStore();
+  const { firstQuestion, resetAllPresettingDatas } = usePresettingDataStore();
   const videoFormData = createVideoFormData(videoChuncks);
 
   useEffect(() => {
@@ -42,6 +44,8 @@ export const completeInterview = () => {
       });
 
       resetInterviewData();
+      resetAllStepDatas();
+      resetAllPresettingDatas();
 
       redirect(`/interview/result/${interviewId}`);
     };

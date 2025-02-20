@@ -5,11 +5,13 @@ import { notify } from '@/shared/components/toast';
 import { TEMPORARY_USER_ID } from '@/shared/constants/question';
 import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
 import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
+import useStepStore from '@/shared/stores/presetting/useStepStore';
 import { apiFetch } from '@/shared/utils/apiFetch';
 import { redirect } from 'next/navigation';
 
 const CompleteChatButton = () => {
-  const { firstQuestion } = usePresettingDataStore();
+  const { resetAllStepDatas } = useStepStore();
+  const { firstQuestion, resetAllPresettingDatas } = usePresettingDataStore();
   const { answerList, questionList, resetInterviewData } =
     useInterviewQuestionAnswerStore();
 
@@ -27,6 +29,8 @@ const CompleteChatButton = () => {
       }),
     });
 
+    resetAllStepDatas();
+    resetAllPresettingDatas();
     resetInterviewData();
 
     redirect(`/interview/result/${interviewId}`);
