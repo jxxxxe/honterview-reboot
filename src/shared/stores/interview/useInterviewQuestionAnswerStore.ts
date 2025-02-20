@@ -3,6 +3,7 @@ import { create } from 'zustand';
 const useInterviewQuestionAnswerStore =
   create<useInterviewQuestionAnswerStoreType>((set) => ({
     currentQuestion: '',
+    currentAnswer: '',
     questionList: [],
     answerList: [],
     answerTimeList: [],
@@ -28,10 +29,25 @@ const useInterviewQuestionAnswerStore =
         };
       });
     },
+    appendToCurrentAnswer: (text) => {
+      set(({ currentAnswer }) => ({
+        currentAnswer: currentAnswer.concat(text),
+      }));
+    },
+    resetCurrentAnswer: () => {
+      set(() => ({
+        currentAnswer: '',
+      }));
+    },
     addAnswer: (answer) => {
-      set(({ answerList }) => {
-        answerList.push(answer);
-        return { answerList };
+      set(({ answerList, currentAnswer }) => {
+        if (answer) {
+          answerList.push(answer);
+        } else {
+          answerList.push(currentAnswer);
+        }
+        currentAnswer = '';
+        return { answerList, currentAnswer };
       });
     },
     addAnswerTime: (time) => {
@@ -64,6 +80,7 @@ export default useInterviewQuestionAnswerStore;
 
 interface useInterviewQuestionAnswerStoreType {
   currentQuestion: string;
+  currentAnswer: string;
   questionList: string[];
   answerList: string[];
   answerTimeList: number[];
@@ -71,7 +88,9 @@ interface useInterviewQuestionAnswerStoreType {
   videoChuncks: Blob[];
   addQuestion: (question: string) => void;
   changeQuestion: (question: string) => void;
-  addAnswer: (answer: string) => void;
+  appendToCurrentAnswer: (text: string) => void;
+  resetCurrentAnswer: () => void;
+  addAnswer: (answer?: string) => void;
   addAnswerTime: (time: number) => void;
   setVideoChuncks: (chunk: Blob) => void;
   resetInterviewData: () => void;
