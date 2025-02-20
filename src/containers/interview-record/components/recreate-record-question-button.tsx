@@ -1,29 +1,28 @@
 'use client';
 
-import { recreateQuestion } from '@/shared/services/interview/openai';
+import { recreateQuestion } from '@/shared/services/record-interview/create-openai-quetion';
 import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
 const RecreateRecordQuestionButton = () => {
-  const { createdQuestionCount, currentQuestion, answerList, changeQuestion } =
-    useInterviewQuestionAnswerStore();
-  const [isRecreated, setIsRecreated] = useState(false);
+  const { createdQuestionCount } = useInterviewQuestionAnswerStore();
+  const [isVisible, setIsVisible] = useState(false);
 
   if (createdQuestionCount <= 1) {
     return;
   }
 
   const onRecreate = async () => {
-    recreateQuestion(currentQuestion, answerList, changeQuestion);
-    setIsRecreated(true);
+    recreateQuestion();
+    setIsVisible(false);
   };
 
   return (
     <button
       className="hover:text-primaries-primary"
       onClick={onRecreate}
-      style={{ display: isRecreated ? 'none' : 'block' }}
+      style={{ display: isVisible ? 'block' : 'none' }}
     >
       <ArrowPathIcon />
       다른 질문
