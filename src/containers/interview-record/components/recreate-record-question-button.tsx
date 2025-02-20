@@ -1,6 +1,5 @@
 'use client';
 
-import { recreateQuestion } from '@/shared/services/record-interview/create-openai-quetion';
 import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
