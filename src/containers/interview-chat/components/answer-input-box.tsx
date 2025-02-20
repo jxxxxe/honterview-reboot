@@ -24,7 +24,7 @@ const AnswerInputBox = () => {
       const res = await apiFetch('api/interview/openai/question', {
         method: 'POST',
         body: JSON.stringify({
-          questionCategoryList: firstQuestionTagList,
+          questionCategoryList: firstQuestionTagList.map((tag) => tag.name),
           prevQuestion: currentQuestion,
           prevResponse: msg,
         }),

@@ -2,10 +2,10 @@ import CompleteChatButton from '@/containers/interview-chat/components/compelete
 import ChatInterviewSection from '@/containers/interview-chat/components/chat-interview-section';
 import { notFound } from 'next/navigation';
 import AnswerInputBox from '@/containers/interview-chat/components/answer-input-box';
+import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
 
 const InterviewChatPage = () => {
-  // const { firstQuestion, firstQuestionTagList } = usePresettingDataStore();
-  const firstQuestion = { name: 'React란 무엇인가요?' };
+  const { firstQuestion } = usePresettingDataStore();
 
   if (!firstQuestion.name) {
     return notFound();

@@ -6,10 +6,10 @@ import QuestionBubble from './question-bubble';
 import RecreateQutestionButton from '../recreate-question-button';
 import { v4 } from 'uuid';
 import AnswerBubble from './answer-bubble';
+import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
 
 const ChatInterviewSection = () => {
-  //   const { firstQuestion } = usePresettingDataStore();
-  const firstQuestion = { id: 1, name: 'react란 무엇인가요?' };
+  const { firstQuestion } = usePresettingDataStore();
 
   const { addQuestion, questionList, answerList } =
     useInterviewQuestionAnswerStore();

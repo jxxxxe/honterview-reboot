@@ -4,12 +4,12 @@ import Button, { ButtonType } from '@/shared/components/button';
 import { notify } from '@/shared/components/toast';
 import { TEMPORARY_USER_ID } from '@/shared/constants/question';
 import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
+import usePresettingDataStore from '@/shared/stores/presetting/usePresettingDataStore';
 import { apiFetch } from '@/shared/utils/apiFetch';
 import { redirect } from 'next/navigation';
 
 const CompleteChatButton = () => {
-  // const {firstQuestion} = usePresettingDataStore()
-  const firstQuestion = { id: 1, name: 'react란 무엇인가요?' };
+  const { firstQuestion } = usePresettingDataStore();
   const { answerList, questionList, resetInterviewData } =
     useInterviewQuestionAnswerStore();
 
