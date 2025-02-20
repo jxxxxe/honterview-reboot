@@ -7,6 +7,7 @@ const getInterview = async (id: number) => {
     },
     include: {
       video: true,
+      firstAnswer: true,
     },
   });
 
