@@ -5,8 +5,7 @@ export interface IProps {
 const VideoPlayer = ({ src }: IProps) => {
   return (
     <video
-      width="100%"
-      height="100%"
+      className="h-full w-full max-w-7xl"
       controls
     >
       <source

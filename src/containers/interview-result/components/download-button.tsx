@@ -1,17 +1,24 @@
+import Button, { ButtonType } from '@/shared/components/button';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 
 interface IProps {
+  createdAt: Date;
   downloadUrl: string;
 }
 
-const DownloadButton = ({ downloadUrl }: IProps) => {
+const DownloadButton = ({ createdAt, downloadUrl }: IProps) => {
   return (
     <a
       href={downloadUrl}
-      download={`honterview_record.webm`}
-      className="mt-[1px] block h-[30px] w-[18px]"
+      download={`honterview_${createdAt.toString()}.webm`}
     >
-      <ArrowDownTrayIcon className="text-slate-500" />
+      <Button
+        styleType={ButtonType.Type2}
+        className="w-fit gap-2 px-10"
+      >
+        <span className="text-medium">영상 다운로드</span>
+        <ArrowDownTrayIcon className="size-8" />
+      </Button>
     </a>
   );
 };
