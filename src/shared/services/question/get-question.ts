@@ -1,3 +1,5 @@
+'use server';
+
 import prisma from '@/shared/libs/prisma';
 
 export const getQuestionById = async (questionId: number) => {

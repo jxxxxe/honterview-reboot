@@ -10,6 +10,7 @@ import PreSettingSceneSection from './components/scene-section';
 import StepSection from './components/step-section';
 import usePresettingDataStore from '../../shared/stores/presetting/usePresettingDataStore';
 import useStepStore from '../../shared/stores/presetting/useStepStore';
+import { getQuestionById } from '@/shared/services/question/get-question';
 
 export interface PreSettingProps {
   firstQuestionId?: number;
@@ -24,11 +25,16 @@ const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
       return;
     }
 
+    const getQuestion = async () => {
+      const firstQuestion = await getQuestionById(firstQuestionId);
+      setFirstQuestion({
+        name: firstQuestion.content,
+        id: firstQuestionId,
+      });
+    };
+
     setSettingStep();
-    setFirstQuestion({
-      name: '',
-      id: firstQuestionId,
-    });
+    getQuestion();
   }, [firstQuestionId, setFirstQuestion, setSettingStep]);
 
   return (
