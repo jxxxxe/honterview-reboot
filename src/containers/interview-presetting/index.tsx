@@ -21,18 +21,20 @@ const PreSetting = ({ firstQuestionId }: PreSettingProps) => {
   const { setSettingStep, resetAllStepDatas } = useStepStore();
 
   useEffect(() => {
-    resetAllStepDatas();
-    resetAllPresettingDatas();
-  }, [resetAllStepDatas, resetAllPresettingDatas]);
-
-  useEffect(() => {
-    if (firstQuestionId) {
-      setSettingStep();
-      setFirstQuestion({
-        name: '',
-        id: firstQuestionId,
-      });
+    if (!firstQuestionId) {
+      return;
     }
+
+    setSettingStep();
+    setFirstQuestion({
+      name: '',
+      id: firstQuestionId,
+    });
+
+    return () => {
+      resetAllStepDatas();
+      resetAllPresettingDatas();
+    };
   }, [firstQuestionId, setFirstQuestion, setSettingStep]);
 
   return (
