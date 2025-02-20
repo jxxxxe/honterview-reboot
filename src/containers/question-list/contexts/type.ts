@@ -1,5 +1,4 @@
-import { ICategory } from '@/shared/types/category-list';
-import { IGetQuestions, IQuestion } from '@/shared/types/question-list';
+import { IGetQuestions } from '@/shared/types/question';
 
 export default interface QuestionListContextTypes {
   categoryList: string[];

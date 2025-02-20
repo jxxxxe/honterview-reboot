@@ -1,6 +1,6 @@
 'use client';
 
-import useMediaRecorder from '../../hooks/useMediaRecorder';
+import useMediaRecorder from '../hooks/useMediaRecorder';
 
 const RecoderSection = () => {
   const { videoRef } = useMediaRecorder();

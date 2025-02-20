@@ -5,13 +5,9 @@ import usePresettingDataStore from '@/shared/stores/presetting/usePresettingData
 import { useEffect } from 'react';
 
 const QuestionSection = () => {
-  // const {firstQuestion} = usePresettingDataStore()
-  const firstQuestion = {
-    id: 1,
-    name: '브라우저의 작동 순서를 말해주세요',
-  };
-  const { currentQuestion, addQuestion, questionList } =
-    useInterviewQuestionAnswerStore();
+  const { firstQuestion } = usePresettingDataStore();
+
+  const { currentQuestion, addQuestion } = useInterviewQuestionAnswerStore();
 
   useEffect(() => {
     addQuestion(firstQuestion.name);
