@@ -1,6 +1,6 @@
 import './style.css';
 
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 import Button, { ButtonType } from '@/shared/components/button';
 
@@ -44,7 +44,7 @@ const PreSettingButtonSection = ({
         ? `/interview/practice/record`
         : `/interview/practice/chat`;
 
-    router.push(nextUrl);
+    redirect(nextUrl);
   };
 
   return (
