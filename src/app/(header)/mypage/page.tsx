@@ -1,5 +1,7 @@
 import ContentSection from '@/containers/mypage/components/content-section';
 import NickNameSection from '@/containers/mypage/components/nickname-section';
+import { TEMPORARY_USER_ID } from '@/shared/constants/question';
+import getMypageById from '@/shared/services/mypage/get-user';
 
 import type { Metadata } from 'next';
 
@@ -20,12 +22,17 @@ export const metadata: Metadata = {
   },
 };
 
-const MyPage = () => {
+const MyPage = async () => {
+  const user = await getMypageById(TEMPORARY_USER_ID);
+
   return (
     <div className="wrap relative flex flex-col items-center gap-[0.5rem] pt-[2rem] tablet:pt-[4rem]">
-      <NickNameSection />
+      <NickNameSection nickname={user.nickname} />
       <div className="mb-[4rem] flex h-full flex-1 flex-col items-center">
-        <ContentSection />
+        <ContentSection
+          likedQuestionList={user.question_likes}
+          interviewList={user.interviews}
+        />
       </div>
     </div>
   );

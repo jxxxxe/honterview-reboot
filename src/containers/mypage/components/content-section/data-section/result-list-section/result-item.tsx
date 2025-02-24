@@ -26,7 +26,7 @@ const ResultItem = ({
           <div className="flex items-center gap-[0.3rem]">
             <span className="font-semibold">
               {createdDate.slice(0, 4)}년 {createdDate.slice(5, 7)}월{' '}
-              {createdDate.slice(8, 10)}일 {createdDate.slice(11, 16)}
+              {createdDate.slice(8, 10)}일 {createdDate.slice(12, -3)}
             </span>
             의 기록
           </div>

@@ -1,11 +1,11 @@
 'use server';
 
 import prisma from '@/shared/libs/prisma';
-import { ICategory } from '@/shared/types/category-list';
+import { IPresettingCategory } from '@/shared/types/category-list';
 
 const createQuestion = async (
   content: string,
-  categoryList: ICategory[],
+  categoryList: IPresettingCategory[],
   userId: number,
 ) => {
   const question = await prisma.question.create({

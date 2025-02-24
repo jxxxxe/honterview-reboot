@@ -3,12 +3,12 @@
 import { unstable_cache } from 'next/cache';
 import { QUESTION_COUNT_IN_PAGE } from '@/containers/question-list/constants';
 import prisma from '@/shared/libs/prisma';
-import { ICategory } from '@/shared/types/category-list';
+import { IPresettingCategory } from '@/shared/types/category-list';
 
 export const getCachedQuestionList = unstable_cache(
   async (
     searchWord = '',
-    categoryList?: ICategory[],
+    categoryList?: IPresettingCategory[],
     order = 'recent',
     page = 1,
   ) => {
