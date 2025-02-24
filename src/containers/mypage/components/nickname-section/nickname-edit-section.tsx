@@ -4,6 +4,9 @@ import Button, { ButtonType } from '@/shared/components/button';
 import Input from '@/shared/components/input';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { notify } from '@/shared/components/toast';
+import editMyNickname from '@/shared/services/mypage/edit-my-nickname';
+import { TEMPORARY_USER_ID } from '@/shared/constants/question';
 
 export interface NicknameEditSectionProps {
   currentNickname: string;
@@ -12,7 +15,7 @@ export interface NicknameEditSectionProps {
 }
 
 const NicknameEditSection = ({
-  currentNickname = '하하하',
+  currentNickname,
   closeModal,
   onChangeNickname,
 }: NicknameEditSectionProps) => {
@@ -20,7 +23,25 @@ const NicknameEditSection = ({
 
   const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    const regex = /^[가-힣a-zA-Z0-9\\s]{2,20}$/;
+    if (nickname.length < 2 || nickname.length > 20) {
+      notify('warning', '닉네임은 최소 2글자, 최대 20글자여야 합니다');
+      return;
+    }
+    if (!regex.test(nickname)) {
+      notify(
+        'warning',
+        '닉네임은 한글(자음+모음), 숫자, 영문으로만 이루어져야 합니다',
+      );
+      return;
+    }
+    if (nickname === currentNickname) {
+      notify('warning', '닉네임을 변경해 주세요');
+      return;
+    }
+    editMyNickname(TEMPORARY_USER_ID, nickname);
+    notify('info', '변경되었습니다!');
+    onChangeNickname(nickname);
     closeModal();
   };
 
@@ -42,7 +63,7 @@ const NicknameEditSection = ({
           className="flex w-full justify-center gap-[0.7rem]"
           onSubmit={onSubmit}
         >
-          <div>
+          <div className="relative w-full">
             <Input
               className="h-[3rem] w-full border"
               value={nickname}
@@ -51,9 +72,10 @@ const NicknameEditSection = ({
             <button
               type="button"
               onClick={() => setNickname('')}
+              className="absolute right-2 top-1/2 -translate-y-1/2"
             >
               <XMarkIcon
-                className={`stroke-black ${!nickname && 'invisible'}`}
+                className={`${!nickname && 'invisible'}`}
                 width="1.5rem"
               />
             </button>

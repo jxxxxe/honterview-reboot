@@ -27,7 +27,7 @@ const MyPage = async () => {
 
   return (
     <div className="wrap relative flex flex-col items-center gap-[0.5rem] pt-[2rem] tablet:pt-[4rem]">
-      <NickNameSection nickname={user.nickname} />
+      <NickNameSection originalNickname={user.nickname} />
       <div className="mb-[4rem] flex h-full flex-1 flex-col items-center">
         <ContentSection
           likedQuestionList={user.question_likes}
