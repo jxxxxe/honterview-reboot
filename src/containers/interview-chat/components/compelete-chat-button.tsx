@@ -8,10 +8,12 @@ import usePresettingDataStore from '@/shared/stores/presetting/usePresettingData
 import useStepStore from '@/shared/stores/presetting/useStepStore';
 import { apiFetch } from '@/shared/utils/apiFetch';
 import { redirect } from 'next/navigation';
+import { useEffect } from 'react';
 
 const CompleteChatButton = () => {
   const { resetAllStepDatas } = useStepStore();
-  const { firstQuestion, resetAllPresettingDatas } = usePresettingDataStore();
+  const { firstQuestion, resetAllPresettingDatas, questionCount } =
+    usePresettingDataStore();
   const { answerList, questionList, resetInterviewData } =
     useInterviewQuestionAnswerStore();
 
@@ -28,13 +30,21 @@ const CompleteChatButton = () => {
         firstQuestionId: firstQuestion.id,
       }),
     });
-
     resetAllStepDatas();
     resetAllPresettingDatas();
     resetInterviewData();
 
     redirect(`/interview/result/${interviewId}`);
   };
+
+  useEffect(() => {
+    if (
+      questionCount <= questionList.length &&
+      questionCount <= answerList.length
+    ) {
+      finishInterview();
+    }
+  }, [questionCount, questionList.length, answerList.length]);
 
   return (
     <Button

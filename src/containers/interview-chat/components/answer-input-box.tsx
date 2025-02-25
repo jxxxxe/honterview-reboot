@@ -8,18 +8,23 @@ import { useRef } from 'react';
 
 const AnswerInputBox = () => {
   const textRef = useRef(null);
-  const { firstQuestionTagList } = usePresettingDataStore();
-  const { currentQuestion, addQuestion, addAnswer } =
+  const { firstQuestionTagList, questionCount } = usePresettingDataStore();
+  const { currentQuestion, addQuestion, addAnswer, questionList, answerList } =
     useInterviewQuestionAnswerStore();
 
   const sendResponse = async (e) => {
     e.preventDefault();
+
     try {
       const formData = new FormData(e.target);
       const msg = formData.get('chat-input') as string;
       textRef.current.value = '';
 
       addAnswer(msg);
+
+      if (questionCount <= questionList.length) {
+        return;
+      }
 
       const res = await apiFetch('api/interview/openai/question', {
         method: 'POST',
