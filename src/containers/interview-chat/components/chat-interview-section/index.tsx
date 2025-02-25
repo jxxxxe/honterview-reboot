@@ -15,7 +15,9 @@ const ChatInterviewSection = () => {
     useInterviewQuestionAnswerStore();
 
   useEffect(() => {
-    addQuestion(firstQuestion.name);
+    if (questionList.length === 0) {
+      addQuestion(firstQuestion.name);
+    }
   }, []);
 
   return (
