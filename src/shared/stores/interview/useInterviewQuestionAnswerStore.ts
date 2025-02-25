@@ -1,7 +1,17 @@
 import { create } from 'zustand';
 
+const initialState = {
+  currentQuestion: '',
+  currentAnswer: '',
+  questionList: [],
+  answerList: [],
+  answerTimeList: [],
+  createdQuestionCount: 0,
+  videoChuncks: [],
+};
 const useInterviewQuestionAnswerStore =
   create<useInterviewQuestionAnswerStoreType>((set) => ({
+    ...initialState,
     currentQuestion: '',
     currentAnswer: '',
     questionList: [],
@@ -21,8 +31,7 @@ const useInterviewQuestionAnswerStore =
     },
     changeQuestion: (question) => {
       set(({ questionList }) => {
-        questionList[questionList.length ? 0 : questionList.length - 1] =
-          question;
+        questionList[questionList.length - 1] = question;
         return {
           questionList,
           currentQuestion: question,
@@ -67,12 +76,7 @@ const useInterviewQuestionAnswerStore =
       });
     },
     resetInterviewData: () => {
-      set(() => ({
-        questionList: [],
-        answerList: [],
-        answerTime: [],
-        questionCount: 0,
-      }));
+      set(initialState);
     },
   }));
 

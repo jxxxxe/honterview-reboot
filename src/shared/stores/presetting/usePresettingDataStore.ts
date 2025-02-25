@@ -1,13 +1,18 @@
 import { create } from 'zustand';
 
-import { PresettingDataState } from './type';
+import { AutocompleteDataType } from '@/shared/components/autocomplete-search/type';
+import { IInterviewType } from '@/shared/types/interview';
 
-const usePresettingDataStore = create<PresettingDataState>((set) => ({
+const initialState = {
   firstQuestionTagList: [],
   firstQuestion: undefined,
   questionCount: 1,
   interviewType: undefined,
   answerTime: { minute: 0, second: 0 },
+};
+
+const usePresettingDataStore = create<PresettingDataState>((set) => ({
+  ...initialState,
   addFirstQuestionTag: (tag) => {
     set(({ firstQuestionTagList }) => {
       firstQuestionTagList.push(tag);
@@ -55,14 +60,25 @@ const usePresettingDataStore = create<PresettingDataState>((set) => ({
     }));
   },
   resetAllPresettingDatas: () => {
-    set(() => ({
-      firstQuestionTagList: [],
-      firstQuestion: undefined,
-      questionCount: 0,
-      interviewType: undefined,
-      answerTime: { minute: 0, second: 0 },
-    }));
+    set(initialState);
   },
 }));
+
+interface PresettingDataState {
+  firstQuestionTagList: AutocompleteDataType[];
+  firstQuestion?: AutocompleteDataType;
+  questionCount: number;
+  interviewType?: IInterviewType;
+  answerTime: { minute: number; second: number };
+  addFirstQuestionTag: (tag: AutocompleteDataType) => void;
+  removeFirstQuestionTag: (tag: AutocompleteDataType) => void;
+  setFirstQuestion: (question: AutocompleteDataType | undefined) => void;
+  setQuestionCount: (count: number) => void;
+  setInterviewTypeCamera: () => void;
+  setInterviewTypeChatting: () => void;
+  setTimeMinute: (minute: number) => void;
+  setTimeSecond: (second: number) => void;
+  resetAllPresettingDatas: () => void;
+}
 
 export default usePresettingDataStore;
