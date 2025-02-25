@@ -5,7 +5,7 @@ export interface MyPageResultDataType {
   interviewId: number;
   firstQuestionContent: string;
   categoryNames: string[];
-  createdAt: string;
+  createdAt: string[];
   status?: string;
   answerType: string;
 }
@@ -21,12 +21,12 @@ const ResultItem = ({
       href={`/interview/result/${id}`}
       className="flex flex-col p-[1rem]"
     >
-      {createdDate && (
+      {createdDate?.length && (
         <div className="mb-[1rem] flex items-center gap-[0.4rem] text-[1.8rem] laptop:text-[1.8rem]">
           <div className="flex items-center gap-[0.3rem]">
             <span className="font-semibold">
-              {createdDate.slice(0, 4)}년 {createdDate.slice(5, 7)}월{' '}
-              {createdDate.slice(8, 10)}일 {createdDate.slice(12, -3)}
+              {createdDate[0]}년 {createdDate[1]}월 {createdDate[2]}일{' '}
+              {createdDate[3]}
             </span>
             의 기록
           </div>

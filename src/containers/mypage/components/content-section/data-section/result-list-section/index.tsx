@@ -26,7 +26,7 @@ const ResultSection = ({
               interviewId={id}
               firstQuestionContent={firstQuestion.content}
               categoryNames={firstQuestion.categories.map(({ name }) => name)}
-              createdAt={created_at.toLocaleString()}
+              createdAt={created_at.toLocaleString().split('.')}
               answerType={interview_type}
             />
           </div>
