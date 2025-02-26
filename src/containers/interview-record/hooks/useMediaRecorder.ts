@@ -1,7 +1,6 @@
 'use client';
 
 import useInterviewQuestionAnswerStore from '@/shared/stores/interview/useInterviewQuestionAnswerStore';
-import { apiFetch } from '@/shared/utils/apiFetch';
 import { useEffect, useRef, useState } from 'react';
 
 const useMediaRecorder = () => {
