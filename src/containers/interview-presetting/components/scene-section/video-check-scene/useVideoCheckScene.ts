@@ -1,42 +1,53 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import useStepStore from '@/shared/stores/presetting/useStepStore';
 
 const useVideoCheckScene = () => {
-  // const {
-  //   status,
-  //   isLoading,
-  //   isRecording,
-  //   startRecording,
-  //   previewStream,
-  //   error,
-  //   pauseRecording,
-  //   stopRecording,
-  // } = useCamera();
-
   const { setNextButtonOn, setNextButtonOff, currentStep } = useStepStore();
 
-  // useEffect(() => {
-  //   if (currentStep !== 4) {
-  //     stopRecording();
-  //     return;
-  //   }
-  //   startRecording();
-  //   pauseRecording();
+  const videoRef = useRef<HTMLVideoElement>(null); //비디오 스트림을 참조
+  const [isRecording, setIsRecording] = useState(false);
 
-  //   if (isRecording || status === 'paused') {
-  //     setNextButtonOn();
-  //   } else {
-  //     setNextButtonOff();
-  //   }
-  // }, [isRecording, currentStep]);
+  const startRecording = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true,
+    }); //카메라, 마이크 접근
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = stream;
+    }
+
+    setIsRecording(true);
+  };
+
+  const stopRecording = () => {
+    videoRef.current.srcObject = null;
+    setIsRecording(false);
+  };
+
+  useEffect(() => {
+    if (videoRef.current) {
+      startRecording();
+    }
+
+    if (isRecording) {
+      setNextButtonOn();
+    } else {
+      setNextButtonOff();
+    }
+
+    return () => {
+      if (videoRef.current.srcObject) {
+        stopRecording();
+      }
+    };
+  }, [videoRef.current, isRecording]);
 
   return {
-    // previewStream,
-    // isLoading,
-    // status,
-    // error,
+    videoRef,
+    isRecording,
     currentStep,
   };
 };
