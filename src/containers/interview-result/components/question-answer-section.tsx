@@ -19,7 +19,6 @@ const QuestionAnswerSection = async ({
   firstAnswer,
   timers,
 }: IProps) => {
-  console.log(timers);
   return (
     <div className="flex w-full flex-col gap-10">
       {questionList.map((question, index) => (
