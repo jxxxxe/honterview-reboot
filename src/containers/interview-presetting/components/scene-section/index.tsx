@@ -15,7 +15,7 @@ const PreSettingSceneSection = () => {
         {currentStep === 1 && <FirstQuestionScene key={1} />}
         {currentStep === 2 && <InterviewSettingScene key={2} />}
         {currentStep === 3 && <TermsScene key={3} />}
-        <VideoCheckScene key={4} />
+        {currentStep === 4 && <VideoCheckScene key={4} />}
       </AnimatePresence>
     </div>
   );
