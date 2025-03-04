@@ -27,16 +27,10 @@ const QuestionAnswerSection = async ({
           className="flex flex-col gap-3 rounded-lg border-[1px] border-dashed border-gray-300 p-5"
         >
           {index === 0 ? (
-            <div className="flex w-full justify-between">
-              <QuestionModal
-                questionContent={question}
-                questionId={firstQuestionId}
-              />
-              <div className="flex h-full items-center gap-2 text-large">
-                답변공개
-                <AnswerVisibilityToggle answerData={firstAnswer} />
-              </div>
-            </div>
+            <QuestionModal
+              questionContent={question}
+              questionId={firstQuestionId}
+            />
           ) : (
             <div className="inline-block p-1 px-3 text-left text-large">
               {question}
@@ -44,8 +38,17 @@ const QuestionAnswerSection = async ({
           )}
           <div className="rounded-lg bg-slate-50 px-11 py-9 text-large">
             {answerList?.at(index) ? (
-              <div>
-                <div>{timers && timers[index]}</div>
+              <div className="flex flex-col gap-5">
+                <div className="flex justify-between">
+                  <div>{timers && timers[index]}</div>
+                  {index === 0 && (
+                    <div className="flex h-full items-center gap-2 text-large text-gray-600">
+                      답변공개
+                      <AnswerVisibilityToggle answerData={firstAnswer} />
+                    </div>
+                  )}
+                </div>
+
                 {answerList[index]}
               </div>
             ) : (
