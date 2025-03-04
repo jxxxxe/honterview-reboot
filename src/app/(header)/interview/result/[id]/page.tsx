@@ -32,7 +32,7 @@ const InterviewResultPage = async ({ params }: InterviewResultPageProps) => {
     firstAnswer,
     created_at,
   } = interview;
-  const isRecord = interview_type === 'RECORD' && !!video.url;
+  const isRecord = interview_type === 'RECORD' && !!video?.url;
 
   return (
     <div className="flex flex-col items-center justify-center p-10">
@@ -52,7 +52,7 @@ const InterviewResultPage = async ({ params }: InterviewResultPageProps) => {
       </div>
       {isRecord && (
         <div className="mb-10 flex w-full justify-center">
-          <VideoPlayer src={video.url} />
+          <VideoPlayer src={video?.url} />
         </div>
       )}
       <div className="mb-10 flex w-full max-w-7xl flex-col gap-10">
@@ -67,7 +67,7 @@ const InterviewResultPage = async ({ params }: InterviewResultPageProps) => {
       {isRecord && (
         <DownloadButton
           createdAt={created_at}
-          downloadUrl={video.downloadUrl}
+          downloadUrl={video?.downloadUrl}
         />
       )}
     </div>
