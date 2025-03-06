@@ -1,12 +1,21 @@
+import LoadingIcon from '@/shared/components/loading-icon';
 import SectionAnimationWrapper from '../section-animation-wrapper';
 import useVideoCheckScene from './useVideoCheckScene';
 
 const VideoCheckScene = () => {
   const { currentStep } = useVideoCheckScene();
-  const { videoRef } = useVideoCheckScene();
+  const { videoRef, isRecording } = useVideoCheckScene();
 
   if (currentStep !== 4) {
     return;
+  }
+
+  if (!isRecording && videoRef.current) {
+    return (
+      <div className="flex flex-col">
+        <LoadingIcon />
+      </div>
+    );
   }
 
   return (
