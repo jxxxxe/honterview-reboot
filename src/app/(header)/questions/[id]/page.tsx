@@ -1,6 +1,7 @@
 import AnswerList from '@/containers/question-detail/components/answer-list';
 import { notFound } from 'next/navigation';
 import QuestionDetailHeader from '@/containers/question-detail/components/question-detail-header';
+import TailQuestions from '@/containers/question-detail/components/tail-questions';
 
 export interface QuestionDetailProps {
   params: Promise<{
@@ -20,7 +21,7 @@ const QuestionDetailPage = async ({ params }: QuestionDetailProps) => {
     <div className="flex flex-col gap-5">
       <QuestionDetailHeader questionId={questionId} />
       <AnswerList questionId={questionId} />
-      {/* <TailQuestions questionId={questionIdAsNumber} /> */}
+      <TailQuestions questionId={questionId} />
     </div>
   );
 };
