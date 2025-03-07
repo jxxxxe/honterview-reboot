@@ -46,7 +46,7 @@ export async function POST(
         pathname,
         url,
         downloadUrl,
-        Interview: {
+        interview: {
           connect: {
             id: Number(interviewId),
           },
