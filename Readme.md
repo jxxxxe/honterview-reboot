@@ -1,14 +1,24 @@
+# [혼터뷰 : Reboot](https://honterview-reboot.vercel.app/) (Beta)
+개발 진행 중(25.01~, 3월 내 완료 예정) <br>
 
-
-https://honterview-reboot.vercel.app/ (Beta)<br>
---
-개발 진행 중(25.01~, 3월 완료 예정) <br>
 
 ------
-- 기존의 혼터뷰 사이트가 AWS 지원 종료로 인해 배포 중단됨에 따라, 배포 재개되도록 리팩토링 한 프로젝트<br>
-- 디자인, 기능은 기존의 혼터뷰와 동일합니다.(일부 제외) => [기존 혼터뷰 리파지토리](https://github.com/DevCourse-I6/Team-I6-Honterview-FE)
-<br>
 
+## 프로젝트 개요
+- 기존의 혼터뷰 사이트가 AWS 지원 종료로 인해 배포 중단됨에 따라, 배포 재개되도록 리팩토링 한 프로젝트<br>
+- 디자인, 기능은 기존의 혼터뷰와 동일합니다(일부 제외) => [기존 혼터뷰 리파지토리](https://github.com/DevCourse-I6/Team-I6-Honterview-FE)<br><br>
+
+## 개발자 
+
+| <img src="https://github.com/jxxxxe.png" style="width:100px"> |
+|:-----:|
+|[안정은](https://github.com/jxxxxe) |
+
+
+  <br>
+
+
+## 변경사항
 1️⃣ 스택 변경 사항
 1. Next.js 풀스택
 2. prisma ORM 적용
