@@ -1,8 +1,8 @@
-import { IGetQuestions } from '@/shared/types/question';
+import { IGetQuestionList } from '@/shared/types/question';
 
 export default interface QuestionListContextTypes {
   categoryList: string[];
-  questionList: IGetQuestions[];
+  questionList: IGetQuestionList[];
   orderBy: string;
   setOrderBy: (value: string) => void;
   selectedTagList: string[];

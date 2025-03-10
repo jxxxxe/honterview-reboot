@@ -25,7 +25,19 @@ export interface IQuestion {
 //   data: IQuestion[];
 // }
 
-export interface IGetQuestions {
+export interface IGetQuestionList {
+  id: number;
+  content: string;
+  categories: {
+    id: number;
+    name: string;
+  }[];
+  likes: {
+    userId: number;
+  }[];
+}
+
+export interface IGetQuestion {
   id: number;
   content: string;
   categories: {

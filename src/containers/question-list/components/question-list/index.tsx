@@ -20,9 +20,9 @@ const QuestionList = () => {
       검색 결과가 없습니다.
     </p>
   ) : (
-    questionList.map(({ id, content, categories, likes, _count }) => {
+    questionList.map(({ id, content, categories, likes }) => {
       const categoryNames = categories.map((category) => category.name);
-      const likeCount = _count.likes;
+      const likeCount = likes.length;
       const isLiked = Boolean(
         likes?.find((like) => like.userId == TEMPORARY_USER_ID),
       );
