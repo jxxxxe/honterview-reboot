@@ -60,7 +60,7 @@ const usePresettingDataStore = create<PresettingDataState>((set) => ({
     }));
   },
   resetAllPresettingDatas: () => {
-    set(initialState);
+    set({ ...initialState, firstQuestionTagList: [] });
   },
 }));
 
