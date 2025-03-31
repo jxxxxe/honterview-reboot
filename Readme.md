@@ -1,5 +1,5 @@
 # [혼터뷰 : Reboot](https://honterview-reboot.vercel.app/) (Beta)
-개발 진행 중(25.01~, 3월 내 완료 예정) <br>
+개발 진행 중(25.01~) <br>
 
 
 ------
@@ -20,11 +20,18 @@
 
 ## 변경사항
 1️⃣ 스택 변경 사항
-1. Next.js 풀스택
-2. prisma ORM 적용
-3. Serverless SQL(vercel postgres)로 db 관리
-4. vercel/blob으로 동영상 storage 관리
-5. vercel로 배포
+|   | 리팩토링 전	 | <b>리팩토링 후</b> | 
+| ------------- | ------------- |  ------------- |  
+| <b>프론트엔드  | Next.js   | <b>Next.js |
+| <b> 백엔드  |  Spring  | <b>Next.js</b>  |
+| <b>ORM  | QueryDSL	  | <b>Prisma ORM</b>  |
+| <b>DB  | AWS RDS, MySQL, H2	  | <b>Vercel Postgres</b>  |
+| <b>객체 스토리지	  | AWS S3	  | <b>Vercel Blob</b>  |
+| <b>배포  | AWS EC2	  | <b>Vercel</b>  |
+
+
+
+
 <br>
 
 2️⃣ 서비스 주요 변경 사항
